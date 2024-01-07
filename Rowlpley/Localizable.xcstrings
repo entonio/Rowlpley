@@ -1,0 +1,993 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    " " : {
+
+    },
+    " → " : {
+
+    },
+    "-" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@%@%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$@%3$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lld%%" : {
+
+    },
+    "↑ 🍔" : {
+
+    },
+    "↑ 💎" : {
+
+    },
+    "↑ 🤙" : {
+
+    },
+    "↔️" : {
+
+    },
+    "+" : {
+
+    },
+    "=" : {
+
+    },
+    "⚠️" : {
+
+    },
+    "✅" : {
+
+    },
+    "⬅︎ Add a character" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⬅︎ Crie uma personagem"
+          }
+        }
+      }
+    },
+    "⬅︎ Select a character" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⬅︎ Seleccione uma personagem"
+          }
+        }
+      }
+    },
+    "💸 ↓" : {
+
+    },
+    "📸" : {
+
+    },
+    "🤜 ↓" : {
+
+    },
+    "😵‍💫 ↓" : {
+
+    },
+    "🛠️🪛🪚🔩🧱" : {
+
+    },
+    "3" : {
+
+    },
+    "5" : {
+
+    },
+    "6" : {
+
+    },
+    "10" : {
+
+    },
+    "Acrobatics" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acrobacia"
+          }
+        }
+      }
+    },
+    "Active" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activas"
+          }
+        }
+      }
+    },
+    "Add Character" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Personagem"
+          }
+        }
+      }
+    },
+    "Add Item 🎒" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Item 🎒"
+          }
+        }
+      }
+    },
+    "Add Ritual ⚡" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Ritual ⚡"
+          }
+        }
+      }
+    },
+    "Add Weapon 🔫" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Arma 🔫"
+          }
+        }
+      }
+    },
+    "AGI" : {
+
+    },
+    "Animals" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adestramento"
+          }
+        }
+      }
+    },
+    "Armours" : {
+
+    },
+    "Arts" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artes"
+          }
+        }
+      }
+    },
+    "Athletics" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atletismo"
+          }
+        }
+      }
+    },
+    "Attributes" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atributos"
+          }
+        }
+      }
+    },
+    "Ballistic" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balístico"
+          }
+        }
+      }
+    },
+    "Black" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preto"
+          }
+        }
+      }
+    },
+    "Characters" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personagens"
+          }
+        }
+      }
+    },
+    "Chemical" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Químico"
+          }
+        }
+      }
+    },
+    "Cold" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frio"
+          }
+        }
+      }
+    },
+    "Color Scheme:" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esquema de cores:"
+          }
+        }
+      }
+    },
+    "Could not export the characters" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível exportar as personagens"
+          }
+        }
+      }
+    },
+    "Could not load systems 🤕" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível carregar os sistemas 🤕"
+          }
+        }
+      }
+    },
+    "Could not read the selected files" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível ler os ficheiros seleccionados"
+          }
+        }
+      }
+    },
+    "Crime" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crime"
+          }
+        }
+      }
+    },
+    "Cutting" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corte"
+          }
+        }
+      }
+    },
+    "d" : {
+
+    },
+    "Dark" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escuro"
+          }
+        }
+      }
+    },
+    "Deceiving" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enganação"
+          }
+        }
+      }
+    },
+    "Defense" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defesa"
+          }
+        }
+      }
+    },
+    "Deletable" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para apagar"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar"
+          }
+        }
+      }
+    },
+    "Diplomacy" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diplomacia"
+          }
+        }
+      }
+    },
+    "Effort Points" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontos de Esforço"
+          }
+        }
+      }
+    },
+    "Empty" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vazio"
+          }
+        }
+      }
+    },
+    "Error" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro"
+          }
+        }
+      }
+    },
+    "Export Characters" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportar Personagens"
+          }
+        }
+      }
+    },
+    "Files skipped" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ficheiros descartados"
+          }
+        }
+      }
+    },
+    "Fire" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fogo"
+          }
+        }
+      }
+    },
+    "FOR" : {
+
+    },
+    "Fortitude" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortitude"
+          }
+        }
+      }
+    },
+    "Gold" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dourado"
+          }
+        }
+      }
+    },
+    "Heavy" : {
+
+    },
+    "Hit Points" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontos de Vida"
+          }
+        }
+      }
+    },
+    "Impact" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impacto"
+          }
+        }
+      }
+    },
+    "Import / Export" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar / Exportar"
+          }
+        }
+      }
+    },
+    "Import Characters" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar Personagens"
+          }
+        }
+      }
+    },
+    "Initiative" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciativa"
+          }
+        }
+      }
+    },
+    "INT" : {
+
+    },
+    "Intimidation" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intimidação"
+          }
+        }
+      }
+    },
+    "Intuition" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intuição"
+          }
+        }
+      }
+    },
+    "Investigation" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investigação"
+          }
+        }
+      }
+    },
+    "Items" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Equipamento"
+          }
+        }
+      }
+    },
+    "Level %lld → %lld %%" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Level %1$lld → %2$lld %%"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nível %1$lld → %2$lld %%"
+          }
+        }
+      }
+    },
+    "Light" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
+          }
+        }
+      }
+    },
+    "Load" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carga"
+          }
+        }
+      }
+    },
+    "Loading systems..." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A ler os sistemas..."
+          }
+        }
+      }
+    },
+    "Marksmanship" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontaria"
+          }
+        }
+      }
+    },
+    "Medicine" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medicina"
+          }
+        }
+      }
+    },
+    "Melee" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luta"
+          }
+        }
+      }
+    },
+    "Mental" : {
+
+    },
+    "Move to Deletable" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mover para as personagens a apagar"
+          }
+        }
+      }
+    },
+    "Movement" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movimento"
+          }
+        }
+      }
+    },
+    "NEX" : {
+
+    },
+    "Occultism" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultismo"
+          }
+        }
+      }
+    },
+    "Ok" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        }
+      }
+    },
+    "One-handed" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De uma mão"
+          }
+        }
+      }
+    },
+    "Perception" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Percepção"
+          }
+        }
+      }
+    },
+    "Piercing" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perfuração"
+          }
+        }
+      }
+    },
+    "PRE" : {
+
+    },
+    "Profession" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profissão"
+          }
+        }
+      }
+    },
+    "Purple" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roxo"
+          }
+        }
+      }
+    },
+    "Red" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vermelho"
+          }
+        }
+      }
+    },
+    "Reflexes" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reflexos"
+          }
+        }
+      }
+    },
+    "Religion" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Religião"
+          }
+        }
+      }
+    },
+    "Reset picture" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar imagem"
+          }
+        }
+      }
+    },
+    "Restore" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mover para as personagens activas"
+          }
+        }
+      }
+    },
+    "Retry" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentar de novo"
+          }
+        }
+      }
+    },
+    "Rituals" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rituais"
+          }
+        }
+      }
+    },
+    "Sanity" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sanidade"
+          }
+        }
+      }
+    },
+    "Sciences" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciências"
+          }
+        }
+      }
+    },
+    "Shooting" : {
+
+    },
+    "Simple" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simples"
+          }
+        }
+      }
+    },
+    "Skills" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perícias"
+          }
+        }
+      }
+    },
+    "Stats" : {
+
+    },
+    "Stealth" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Furtividade"
+          }
+        }
+      }
+    },
+    "Steering" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilotagem"
+          }
+        }
+      }
+    },
+    "Sum" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soma"
+          }
+        }
+      }
+    },
+    "Survival" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobrevivência"
+          }
+        }
+      }
+    },
+    "System" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sistema"
+          }
+        }
+      }
+    },
+    "Tactical" : {
+
+    },
+    "Tactics" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Táctica"
+          }
+        }
+      }
+    },
+    "Technology" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tecnologia"
+          }
+        }
+      }
+    },
+    "Two-handed" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De duas mãos"
+          }
+        }
+      }
+    },
+    "Updating system files..." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A actualizar os ficheiros dos sistemas..."
+          }
+        }
+      }
+    },
+    "VIG" : {
+
+    },
+    "Weapons" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armas"
+          }
+        }
+      }
+    },
+    "White" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Branco"
+          }
+        }
+      }
+    },
+    "Will" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vontade"
+          }
+        }
+      }
+    },
+    "Worldliness" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualidades"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

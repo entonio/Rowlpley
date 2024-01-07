@@ -1,0 +1,7 @@
+
+.DS_Store
+xcuserdata/
+Package.resolved
+
+Rowlpley/Loadables/**/*.xlsx
+Rowlpley/Loadables/**/*.zip
