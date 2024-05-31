@@ -33,6 +33,7 @@
 		0039C9C42BD0AB4A009E0E02 /* DnD5System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039C9C32BD0AB4A009E0E02 /* DnD5System.swift */; };
 		0039C9C62BD0ABFB009E0E02 /* OPSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039C9C52BD0ABFB009E0E02 /* OPSystem.swift */; };
 		003A4B1F2C0A48B40010F344 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A4B1E2C0A48B40010F344 /* Lib.swift */; };
+		003A4B212C0A4A370010F344 /* CharacterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A4B202C0A4A370010F344 /* CharacterList.swift */; };
 		0048DE8C2BFC2BBC00D7A816 /* DeSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048DE8B2BFC2BBC00D7A816 /* DeSerialization.swift */; };
 		0048DE8E2BFD808400D7A816 /* Checksum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048DE8D2BFD808400D7A816 /* Checksum.swift */; };
 		00688C462BFE865300101FE2 /* Expressive in Frameworks */ = {isa = PBXBuildFile; productRef = 00688C452BFE865300101FE2 /* Expressive */; };
@@ -174,6 +175,7 @@
 		0039C9C32BD0AB4A009E0E02 /* DnD5System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnD5System.swift; sourceTree = "<group>"; };
 		0039C9C52BD0ABFB009E0E02 /* OPSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPSystem.swift; sourceTree = "<group>"; };
 		003A4B1E2C0A48B40010F344 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		003A4B202C0A4A370010F344 /* CharacterList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterList.swift; sourceTree = "<group>"; };
 		0048DE8B2BFC2BBC00D7A816 /* DeSerialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeSerialization.swift; sourceTree = "<group>"; };
 		0048DE8D2BFD808400D7A816 /* Checksum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checksum.swift; sourceTree = "<group>"; };
 		00688C502BFE8AB000101FE2 /* RPGLoadables+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RPGLoadables+Update.swift"; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				0033E8442B4A3791001E135C /* ContentView.swift */,
 				00688C5B2C015A3E00101FE2 /* LoadingView.swift */,
 				00688C592C015A1200101FE2 /* NavigationView.swift */,
+				003A4B202C0A4A370010F344 /* CharacterList.swift */,
 				001646062BED94DB005AF389 /* CharacterLink.swift */,
 				001646082BED9637005AF389 /* ColorSchemeSelector.swift */,
 				001646042BED94C6005AF389 /* Styling.swift */,
@@ -722,6 +725,7 @@
 				00F3520E2B953D6800CFD445 /* DnD5Character.swift in Sources */,
 				0033E8872B4B03F4001E135C /* OPItems.swift in Sources */,
 				00F351FB2B953A3B00CFD445 /* RPGSystem.swift in Sources */,
+				003A4B212C0A4A370010F344 /* CharacterList.swift in Sources */,
 				00F3513B2B9408D700CFD445 /* OPStrings.swift in Sources */,
 				00B26DA92BF9985F0058FCDC /* ValueProvider.swift in Sources */,
 				00C5E2392BE8487E002B8283 /* OPPictureView.swift in Sources */,
