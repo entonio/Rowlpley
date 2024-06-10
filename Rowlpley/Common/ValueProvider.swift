@@ -2,8 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
-
 protocol ValueProvider<In, Out> {
     associatedtype In
     associatedtype Out

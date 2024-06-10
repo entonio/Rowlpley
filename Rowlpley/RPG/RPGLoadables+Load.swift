@@ -57,6 +57,9 @@ extension RPGLoadables {
     }
 
     func load(table relativePath: String) throws -> Table<XLSX> {
+        executionContext.delete(.table)
+        executionContext.delete(.row)
+
         let absolutePath = try {
             let cachePath = FileManager.default.cache(path: relativePath)
             if FileManager.default.fileExists(atPath: cachePath) {
@@ -65,9 +68,10 @@ extension RPGLoadables {
             if let bundlePath = Bundle.main.locate(path: relativePath) {
                 return bundlePath
             }
-            throw PreconditionError("Cannot find [\(relativePath)] in Bundle nor in Cache")
+            throw PreconditionError("Cannot find [\(relativePath)] in Bundle or in Cache")
         }()
 
+        executionContext.put(.table, absolutePath)
         return try Table(xlsx: absolutePath)
     }
 }

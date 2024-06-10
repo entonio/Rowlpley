@@ -65,6 +65,19 @@ struct OPCharacterView: View {
             }
 
             Section {
+                ForEach(character.protections) {
+                    OPProtectionView(character: character, protection: $0)
+                }
+            } header: {
+                HStack {
+                    Text("Protections")
+                    Spacer()
+                    Menu("Add Protection 🦺", systemImage: "plus") {
+                    }
+                }
+            }
+
+            Section {
                 ForEach(character.items) {
                     OPItemView(character: character, item: $0)
                 }
@@ -89,5 +102,5 @@ struct OPCharacterView: View {
 }
 
 #Preview {
-    OPCharacterView(character: .constant(OPCharacter(position: IndexPath(row: 0, section: 0), names: ["C"], player: "P", system: OPSystem(id: RPGSystemId(id: "OP"), name: "OP", icon: "🍹", dynLocs: Localizations(), classes: [], origins: []), nex: OPNex(percent: 10))))
+    OPCharacterView(character: .constant(OPCharacter(position: IndexPath(row: 0, section: 0), names: ["C"], player: "P", system: OPSystem(id: RPGSystemId(id: "OP"), name: "OP", icon: "🍹", dynLocs: Localizations(), classes: [], origins: [], protections: [], weapons: [], items: []), nex: OPNex(percent: 10))))
 }

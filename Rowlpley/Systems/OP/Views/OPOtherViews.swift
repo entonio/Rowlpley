@@ -2,8 +2,8 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
+import Expressive
 
 struct OPNumberInput: View {
     let value: Binding<Int>
@@ -36,9 +36,17 @@ struct OPFormulaView: View  {
     let result: Any
     let resultStyle: any ShapeStyle
 
-    init(_ expression: Any, _ result: Any, _ resultStyle: (any ShapeStyle)? = nil) {
-        self.expression = expression
-        self.result = result
+    init(_ expression: Any, _ result: Any, _ resultStyle: (any ShapeStyle)? = nil, _ localizations: Localizations) {
+        if let expression = expression as? Expression {
+            self.expression = expression.description(varTransform: localizations.get)
+        } else {
+            self.expression = expression
+        }
+        if let result = result as? Expression {
+            self.result = result.description(varTransform: localizations.get)
+        } else {
+            self.result = result
+        }
         if let resultStyle {
             self.resultStyle = resultStyle.opacity(0.8)
         } else {

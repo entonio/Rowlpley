@@ -2,8 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
-
 struct DnD5System: RPGSystem {
     var type: RPGSystemType { .DnD5 }
 

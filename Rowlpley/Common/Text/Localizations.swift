@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 struct Localizations {
@@ -14,7 +13,11 @@ struct Localizations {
         map[language] = strings
     }
 
-    func get(language: Locale.LanguageCode = Locale.current.language.languageCode!, _ key: String) -> String {
+    func get(_ key: String) -> String {
+        get(language: Locale.current.language.languageCode!, key)
+    }
+
+    func get(language: Locale.LanguageCode, _ key: String) -> String {
         map[language]?[key] ?? key
     }
 }
@@ -44,7 +47,7 @@ extension LocalizedEnum {
             $0.name.key.lowercased() == name
         }
         guard let result else {
-            throw UnexpectedValueError("Cannot convert [\(name)] to \(Self.self)")
+            throw ConversionError(name, Self.self)
         }
         self = result
     }

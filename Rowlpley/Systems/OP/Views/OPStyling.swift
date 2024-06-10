@@ -17,7 +17,7 @@ extension View {
             //.offset(y: 1.5)
             .font(.opFormula)
     }
-    
+
     func opNumber() -> some View {
         self.font(.opNumber)
             .frame(width: 24)

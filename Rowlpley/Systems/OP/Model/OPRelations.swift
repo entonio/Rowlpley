@@ -2,8 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
-
 extension OPSkill {
     var attribute: OPAttribute {
         switch self {

@@ -2,8 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
-
 protocol StringIdProvider: Codable, Hashable {
     var id: StringId { get }
 }

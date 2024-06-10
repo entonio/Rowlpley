@@ -18,7 +18,7 @@ extension OPCharacter: PreloadablePersistentModel {
                 icon: Bundle.main.storableImage(path: "Loadables/Characters/Aurelio.jpeg"),
                 system: .OP,
                 classe: specialist,
-                track: OPTrack.Id(id: "Field medic", system: .OP),
+                track: OPTrack.Id(id: "Technician", system: .OP),
                 origin: OPOrigin.Id(id: "Academical", system: .OP),
                 nex: OPNex(percent: 35),
                 movement: 9,
@@ -71,17 +71,18 @@ extension OPCharacter: PreloadablePersistentModel {
                 rituals: [],
                 ammunitions: [],
                 weapons: [],
+                protections: [],
                 items: []
             ),
             OPCharacter(
                 position: .zero,
-                names: ["Gabriel"],
+                names: ["Gabriel", "Batista"],
                 player: "",
-                icon: Bundle.main.storableImage(path: "Loadables/Characters/Gabriel.png"),
+                icon: Bundle.main.storableImage(path: "Loadables/Characters/Gabriel.webp"),
                 system: .OP,
                 classe: combatant,
-                track: OPTrack.Id(id: "Infiltrator", system: .OP),
-                origin: OPOrigin.Id(id: "Academic", system: .OP),
+                track: OPTrack.Id(id: "Special Ops", system: .OP),
+                origin: OPOrigin.Id(id: "Workman", system: .OP),
                 nex: OPNex(percent: 35),
                 movement: 9,
                 hitPoints: 28,
@@ -133,6 +134,7 @@ extension OPCharacter: PreloadablePersistentModel {
                 rituals: [],
                 ammunitions: [],
                 weapons: [],
+                protections: [],
                 items: []
             ),
             OPCharacter(
@@ -142,8 +144,8 @@ extension OPCharacter: PreloadablePersistentModel {
                 icon: Bundle.main.storableImage(path: "Loadables/Characters/Yuri.png"),
                 system: .OP,
                 classe: occultist,
-                track: OPTrack.Id(id: "Witch", system: .OP),
-                origin: OPOrigin.Id(id: "Academic", system: .OP),
+                track: OPTrack.Id(id: "Graduate", system: .OP),
+                origin: OPOrigin.Id(id: "Repentant cultist", system: .OP),
                 nex: OPNex(percent: 35),
                 movement: 9,
                 hitPoints: 28,
@@ -195,6 +197,7 @@ extension OPCharacter: PreloadablePersistentModel {
                 rituals: [],
                 ammunitions: [],
                 weapons: [],
+                protections: [],
                 items: []
             ),
             OPCharacter(
@@ -205,7 +208,7 @@ extension OPCharacter: PreloadablePersistentModel {
                 system: .OP,
                 classe: predator,
                 track: OPTrack.Id(id: "Witch", system: .OP),
-                origin: OPOrigin.Id(id: "Academic", system: .OP),
+                origin: OPOrigin.Id(id: "Outcast", system: .OP),
                 nex: OPNex(percent: 35),
                 movement: 9,
                 hitPoints: 28,
@@ -257,6 +260,7 @@ extension OPCharacter: PreloadablePersistentModel {
                 rituals: [],
                 ammunitions: [],
                 weapons: [],
+                protections: [],
                 items: []
             ),
             OPCharacter(
@@ -319,6 +323,7 @@ extension OPCharacter: PreloadablePersistentModel {
                 rituals: [],
                 ammunitions: [],
                 weapons: [],
+                protections: [],
                 items: []
             ),
             OPCharacter(
@@ -382,6 +387,7 @@ extension OPCharacter: PreloadablePersistentModel {
                 rituals: [],
                 ammunitions: [],
                 weapons: [],
+                protections: [],
                 items: []
             )
         ]

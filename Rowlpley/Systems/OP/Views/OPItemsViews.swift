@@ -2,14 +2,13 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
-struct OPItemView: View {
+struct OPProtectionView: View {
     var character: OPCharacter
-    var item: OPItem
+    var protection: OPProtection
 
     var body: some View {
-        Text(item.name(character.system.op))
+        Text(protection.name(character.system.op))
     }
 }

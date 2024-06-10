@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 struct OPNexView: View {
@@ -24,7 +23,7 @@ struct OPNexView: View {
                     Text("\(character.nex.percent)%")
                         .foregroundStyle(character.nex.color)
                         .opWideNumber()
-                    OPFormulaView("", character.nex.level, .opFormulaResult)
+                    OPFormulaView("", character.nex.level, .opFormulaResult, character.system.get.dynLocs)
                 }
             }
         } and: {
@@ -44,22 +43,22 @@ struct OPHitPointsView: View {
 
     var body: some View {
         let point1 = character.hitPoints
-        let point2 = point1 + character.temporaryHitPoints
-        let point3 = Swift.max(point2, character.hitPointsMax)
+        let point2 = character.hitPointsMax
+        let point3 = point2 + character.temporaryHitPoints
         ExtentsView(context: .groupedRow, [
             .init(point1, .opHitPoints),
-            .init(point2, .opTemporaryHitPoints),
-            .init(point3, .opExtentBackground),
+            .init(point2, .opExtentBackground),
+            .init(point3, .opTemporaryHitPoints),
         ]) {
             HStack {
                 Text(OPStat.hitPoints.name)
+                    .shrinkableLabel()
                 Spacer()
-                OPFormulaView(character.classe.get.hitPoints, character.hitPointsMax, .opHitPoints)
+                OPFormulaView(character.classe.get.hitPoints, character.hitPointsMax, .opHitPoints, character.system.get.dynLocs)
                 Text("\(character.hitPoints)")
                     .foregroundStyle(.opHitPoints)
                     .opNumber()
                     .toggleConditionalView($showEditor)
-
                 OPNumberInput(value: $character.temporaryHitPoints)
                     .foregroundStyle(character.temporaryHitPoints > 0 ? .opTemporaryHitPoints : .opZero)
             }
@@ -101,8 +100,9 @@ struct OPEffortPointsView: View {
         ]) {
             HStack {
                 Text(OPStat.effortPoints.name)
+                    .shrinkableLabel()
                 Spacer()
-                OPFormulaView(character.classe.get.effortPoints, character.effortPointsMax, .opEffortPoints)
+                OPFormulaView(character.classe.get.effortPoints, character.effortPointsMax, .opEffortPoints, character.system.get.dynLocs)
                 Text("\(character.effortPoints)")
                     .foregroundStyle(.opEffortPoints)
                     .opNumber()
@@ -146,8 +146,9 @@ struct OPSanityView: View {
         ]) {
             HStack {
                 Text(OPStat.sanity.name)
+                    .shrinkableLabel()
                 Spacer()
-                OPFormulaView(character.classe.get.sanity, character.sanityMax, .opSanity)
+                OPFormulaView(character.classe.get.sanity, character.sanityMax, .opSanity, character.system.get.dynLocs)
                 Text("\(character.sanity)")
                     .foregroundStyle(.opSanity)
                     .opNumber()
@@ -185,7 +186,7 @@ struct OPDefensesView: View {
         LRStack {
             Text("Defense")
         } and: {
-            OPFormulaView(character.defense1, character.defense2, .opDefense)
+            OPFormulaView(character.defense1, character.defense2, .opDefense, character.system.get.dynLocs)
             Text("\(character.defenseValue)")
                 .foregroundStyle(.opDefense)
                 .opNumber()

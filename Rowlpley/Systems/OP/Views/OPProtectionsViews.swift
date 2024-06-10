@@ -4,11 +4,11 @@
 
 import SwiftUI
 
-struct OPRitualView: View {
+struct OPItemView: View {
     var character: OPCharacter
-    var ritual: OPRitual
+    var item: OPItem
 
     var body: some View {
-        Text(ritual.name(character.system.op))
+        Text(item.name(character.system.op))
     }
 }

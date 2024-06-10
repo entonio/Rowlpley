@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001571FE2C17A58E0085A5BC /* OPProtectionsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001571FD2C17A58E0085A5BC /* OPProtectionsViews.swift */; };
 		001646002BED93C6005AF389 /* ColorInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001645FF2BED93C6005AF389 /* ColorInvert.swift */; };
 		001646032BED9434005AF389 /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001646022BED9434005AF389 /* AverageColor.swift */; };
 		001646052BED94C6005AF389 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001646042BED94C6005AF389 /* Styling.swift */; };
@@ -29,11 +30,11 @@
 		0033E8872B4B03F4001E135C /* OPItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0033E8822B4B0327001E135C /* OPItems.swift */; };
 		0033E8882B4B03F7001E135C /* OPRituals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0033E8832B4B0327001E135C /* OPRituals.swift */; };
 		0033E88B2B4B0475001E135C /* OPCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0033E88A2B4B0469001E135C /* OPCharacterView.swift */; };
-		0039C9BA2BCEE15E009E0E02 /* Loadables in Resources */ = {isa = PBXBuildFile; fileRef = 0039C9B92BCEE15E009E0E02 /* Loadables */; };
 		0039C9C42BD0AB4A009E0E02 /* DnD5System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039C9C32BD0AB4A009E0E02 /* DnD5System.swift */; };
 		0039C9C62BD0ABFB009E0E02 /* OPSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039C9C52BD0ABFB009E0E02 /* OPSystem.swift */; };
 		003A4B1F2C0A48B40010F344 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A4B1E2C0A48B40010F344 /* Lib.swift */; };
 		003A4B212C0A4A370010F344 /* CharacterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A4B202C0A4A370010F344 /* CharacterList.swift */; };
+		0042AAD02C163F9700429BBB /* Loadables in Resources */ = {isa = PBXBuildFile; fileRef = 0042AACF2C163F9700429BBB /* Loadables */; };
 		0048DE8C2BFC2BBC00D7A816 /* DeSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048DE8B2BFC2BBC00D7A816 /* DeSerialization.swift */; };
 		0048DE8E2BFD808400D7A816 /* Checksum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048DE8D2BFD808400D7A816 /* Checksum.swift */; };
 		00688C462BFE865300101FE2 /* Expressive in Frameworks */ = {isa = PBXBuildFile; productRef = 00688C452BFE865300101FE2 /* Expressive */; };
@@ -50,6 +51,7 @@
 		00688C602C016F7000101FE2 /* DataFS+zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00688C5F2C016F7000101FE2 /* DataFS+zip.swift */; };
 		00688C642C01825100101FE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00688C632C01825100101FE2 /* LaunchScreen.storyboard */; };
 		00688C682C02204100101FE2 /* Launch.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 00688C672C02204100101FE2 /* Launch.jpeg */; };
+		0071A3472C161BED001EE8E9 /* TypedMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071A3462C161BED001EE8E9 /* TypedMap.swift */; };
 		008AAEA22BA7A26300C608E2 /* OPRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008AAEA12BA7A26300C608E2 /* OPRelations.swift */; };
 		008C13552BE94C1C004FAABD /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C13542BE94C1C004FAABD /* Gradient.swift */; };
 		009752022BD830ED00E08F62 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009752012BD830ED00E08F62 /* WrappingHStack.swift */; };
@@ -144,6 +146,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		001571FD2C17A58E0085A5BC /* OPProtectionsViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPProtectionsViews.swift; sourceTree = "<group>"; };
 		001645FF2BED93C6005AF389 /* ColorInvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInvert.swift; sourceTree = "<group>"; };
 		001646022BED9434005AF389 /* AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageColor.swift; sourceTree = "<group>"; };
 		001646042BED94C6005AF389 /* Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
@@ -171,11 +174,11 @@
 		0033E8822B4B0327001E135C /* OPItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPItems.swift; sourceTree = "<group>"; };
 		0033E8832B4B0327001E135C /* OPRituals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPRituals.swift; sourceTree = "<group>"; };
 		0033E88A2B4B0469001E135C /* OPCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPCharacterView.swift; sourceTree = "<group>"; };
-		0039C9B92BCEE15E009E0E02 /* Loadables */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Loadables; sourceTree = "<group>"; };
 		0039C9C32BD0AB4A009E0E02 /* DnD5System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnD5System.swift; sourceTree = "<group>"; };
 		0039C9C52BD0ABFB009E0E02 /* OPSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPSystem.swift; sourceTree = "<group>"; };
 		003A4B1E2C0A48B40010F344 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		003A4B202C0A4A370010F344 /* CharacterList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterList.swift; sourceTree = "<group>"; };
+		0042AACF2C163F9700429BBB /* Loadables */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Loadables; sourceTree = "<group>"; };
 		0048DE8B2BFC2BBC00D7A816 /* DeSerialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeSerialization.swift; sourceTree = "<group>"; };
 		0048DE8D2BFD808400D7A816 /* Checksum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checksum.swift; sourceTree = "<group>"; };
 		00688C502BFE8AB000101FE2 /* RPGLoadables+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RPGLoadables+Update.swift"; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 		00688C5F2C016F7000101FE2 /* DataFS+zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataFS+zip.swift"; sourceTree = "<group>"; };
 		00688C632C01825100101FE2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00688C672C02204100101FE2 /* Launch.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Launch.jpeg; sourceTree = "<group>"; };
+		0071A3452C160AC2001EE8E9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0071A3462C161BED001EE8E9 /* TypedMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedMap.swift; sourceTree = "<group>"; };
 		008032302C0693B900C715AD /* QuickLookThumbnailing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookThumbnailing.framework; path = System/Library/Frameworks/QuickLookThumbnailing.framework; sourceTree = SDKROOT; };
 		008AAEA12BA7A26300C608E2 /* OPRelations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPRelations.swift; sourceTree = "<group>"; };
 		008C13542BE94C1C004FAABD /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 		0033E8362B4A3791001E135C = {
 			isa = PBXGroup;
 			children = (
+				0071A3452C160AC2001EE8E9 /* README.md */,
 				0033E8412B4A3791001E135C /* Rowlpley */,
 				0033E8562B4A3792001E135C /* RowlpleyTests */,
 				0033E8602B4A3792001E135C /* RowlpleyUITests */,
@@ -347,7 +353,7 @@
 				001645FE2BED935E005AF389 /* Views */,
 				0016460E2BED9A65005AF389 /* RPG */,
 				007137652BEFC97200279BF0 /* Systems */,
-				0039C9B92BCEE15E009E0E02 /* Loadables */,
+				0042AACF2C163F9700429BBB /* Loadables */,
 				00F351442B941A5800CFD445 /* Localizable.xcstrings */,
 				003211FA2BA27CB700B05A79 /* Assets.xcassets */,
 				00688C672C02204100101FE2 /* Launch.jpeg */,
@@ -492,6 +498,7 @@
 				00C5E22E2BE7F999002B8283 /* OPStatsViews.swift */,
 				00C5E2322BE7F9FB002B8283 /* OPRitualsViews.swift */,
 				00C5E2362BE7FA30002B8283 /* OPWeaponsViews.swift */,
+				001571FD2C17A58E0085A5BC /* OPProtectionsViews.swift */,
 				00C5E2342BE7FA11002B8283 /* OPItemsViews.swift */,
 				00C5E2282BE7F911002B8283 /* OPSKillsViews.swift */,
 				00C5E2302BE7F9C4002B8283 /* OPOtherViews.swift */,
@@ -506,6 +513,7 @@
 				00B26D8E2BF95B5F0058FCDC /* Collections.swift */,
 				00B26D902BF95C010058FCDC /* Errors.swift */,
 				00B26DA82BF9985F0058FCDC /* ValueProvider.swift */,
+				0071A3462C161BED001EE8E9 /* TypedMap.swift */,
 				00688C622C0170A800101FE2 /* Text */,
 				00688C612C01702000101FE2 /* IO */,
 				00B26DA12BF996850058FCDC /* SwiftUI */,
@@ -552,6 +560,7 @@
 				0033E83B2B4A3791001E135C /* Sources */,
 				0033E83C2B4A3791001E135C /* Frameworks */,
 				0033E83D2B4A3791001E135C /* Resources */,
+				0042AAD12C16400300429BBB /* Delete Any Unwanted Bundle Resources */,
 				00F3516B2B95351B00CFD445 /* Embed Frameworks */,
 				0080323C2C0693B900C715AD /* Embed Foundation Extensions */,
 			);
@@ -686,8 +695,8 @@
 			files = (
 				0033E84C2B4A3791001E135C /* Preview Assets.xcassets in Resources */,
 				003211FB2BA27CB700B05A79 /* Assets.xcassets in Resources */,
+				0042AAD02C163F9700429BBB /* Loadables in Resources */,
 				00688C682C02204100101FE2 /* Launch.jpeg in Resources */,
-				0039C9BA2BCEE15E009E0E02 /* Loadables in Resources */,
 				00688C642C01825100101FE2 /* LaunchScreen.storyboard in Resources */,
 				00F351452B941A5800CFD445 /* Localizable.xcstrings in Resources */,
 			);
@@ -717,6 +726,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0042AAD12C16400300429BBB /* Delete Any Unwanted Bundle Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Delete Any Unwanted Bundle Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\ncd $CODESIGNING_FOLDER_PATH\nfind Loadables/Systems/OP -name \\*.xlsx -ls -delete\nfind Loadables/Systems/OP -name \\*.zip -ls -delete\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0033E83B2B4A3791001E135C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -732,9 +763,11 @@
 				009752042BD88CEC00E08F62 /* UIKit.swift in Sources */,
 				00C5E22F2BE7F999002B8283 /* OPStatsViews.swift in Sources */,
 				0033E88B2B4B0475001E135C /* OPCharacterView.swift in Sources */,
+				001571FE2C17A58E0085A5BC /* OPProtectionsViews.swift in Sources */,
 				00B26DA72BF996AE0058FCDC /* BuildingBlocks.swift in Sources */,
 				00C5E2352BE7FA11002B8283 /* OPItemsViews.swift in Sources */,
 				00B26DA52BF996A70058FCDC /* SelectView.swift in Sources */,
+				0071A3472C161BED001EE8E9 /* TypedMap.swift in Sources */,
 				00B26DA02BF995B60058FCDC /* StorableImage.swift in Sources */,
 				00B26DA32BF9969B0058FCDC /* ExtentsView.swift in Sources */,
 				00688C532BFE8B0E00101FE2 /* RPGLoadables.swift in Sources */,
@@ -973,6 +1006,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Rowlpley/Preview Content\"";
 				DEVELOPMENT_TEAM = GCSCW4K3XR;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rowlpley/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.role-playing-games";
@@ -1009,6 +1043,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Rowlpley/Preview Content\"";
 				DEVELOPMENT_TEAM = GCSCW4K3XR;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rowlpley/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.role-playing-games";

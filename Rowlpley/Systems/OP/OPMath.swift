@@ -3,7 +3,6 @@
 //
         
 
-import Foundation
 import Expressive
 
 let AGI: Expression = "AGI"

@@ -6,9 +6,19 @@ import Foundation
 
 extension Bundle {
     func locate(path: String) -> String? {
-        let name = URL(string: path)!.lastPathComponent
+        let name = path.lastPathComponent
         let folder = String(path.dropLast(name.count + 1))
         return self.path(forResource: name, ofType: nil, inDirectory: folder)
+    }
+}
+
+extension String {
+    var lastPathComponent: String {
+        URL(string: self)!.lastPathComponent
+    }
+
+    var pathExtension: String {
+        URL(string: self)!.pathExtension
     }
 }
 

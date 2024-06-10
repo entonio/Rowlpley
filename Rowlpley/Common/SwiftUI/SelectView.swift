@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 struct SelectView<Label, SelectionValue, Data, Name, ID>: View where Label: View, SelectionValue: Hashable, Data: RandomAccessCollection, Name: Any, ID : Hashable {

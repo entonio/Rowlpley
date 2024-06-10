@@ -88,17 +88,17 @@ extension OPSkill: LocalizedEnum {
 extension OPProficiencyTag: LocalizedEnum {
     var name: LocalizedStringKey {
         switch self {
-        case .weapons:   "Weapons"
-        case .armors:    "Armours"
-        case .light:     "Light"
-        case .heavy:     "Heavy"
-        case .melee:     "Melee"
-        case .fire:      "Fire"
-        case .shooting:  "Shooting"
-        case .tactical:  "Tactical"
-        case .simple:    "Simple"
-        case .oneHanded: "One-handed"
-        case .twoHanded: "Two-handed"
+        case .weapons:      "Weapons"
+        case .protections:  "Protections"
+        case .light:        "Light"
+        case .heavy:        "Heavy"
+        case .melee:        "Melee"
+        case .fire:         "Fire"
+        case .shooting:     "Shooting"
+        case .tactical:     "Tactical"
+        case .simple:       "Simple"
+        case .oneHanded:    "One-handed"
+        case .twoHanded:    "Two-handed"
         }
     }
 }

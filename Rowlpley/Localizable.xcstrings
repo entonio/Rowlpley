@@ -143,6 +143,16 @@
         }
       }
     },
+    "Add Protection 🦺" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Protecção 🦺"
+          }
+        }
+      }
+    },
     "Add Ritual ⚡" : {
       "localizations" : {
         "pt-PT" : {
@@ -175,9 +185,6 @@
           }
         }
       }
-    },
-    "Armours" : {
-
     },
     "Arts" : {
       "localizations" : {
@@ -466,7 +473,14 @@
       }
     },
     "Heavy" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesada"
+          }
+        }
+      }
     },
     "Hit Points" : {
       "localizations" : {
@@ -638,7 +652,14 @@
       }
     },
     "Mental" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mental"
+          }
+        }
+      }
     },
     "Move to Deletable" : {
       "localizations" : {
@@ -722,6 +743,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Profissão"
+          }
+        }
+      }
+    },
+    "Protections" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protecções"
           }
         }
       }
@@ -827,7 +858,14 @@
       }
     },
     "Shooting" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disparo"
+          }
+        }
+      }
     },
     "Simple" : {
       "localizations" : {
@@ -850,7 +888,14 @@
       }
     },
     "Stats" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stats"
+          }
+        }
+      }
     },
     "Stealth" : {
       "localizations" : {
@@ -903,7 +948,14 @@
       }
     },
     "Tactical" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Táctica"
+          }
+        }
+      }
     },
     "Tactics" : {
       "localizations" : {

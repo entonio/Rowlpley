@@ -95,6 +95,14 @@ extension View {
     }
 }
 
+extension View {
+    func shrinkableLabel() -> some View {
+        self
+            .truncationMode(.middle)
+            .layoutPriority(-1)
+    }
+}
+
 enum StorableColorScheme: Int, Hashable, CaseIterable {
 
     case system

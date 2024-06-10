@@ -19,3 +19,13 @@ struct RowlpleyApp: App {
         .environmentObject(loadables)
     }
 }
+
+let executionContext = TypedMap(ttl: 30)
+
+extension TypedMapKey where ValueType == String {
+    static let table = TypedMapKey()
+}
+
+extension TypedMapKey where ValueType == Int {
+    static let row = TypedMapKey()
+}

@@ -2,8 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
-
 struct ProcessingError: Error, CustomStringConvertible, CustomDebugStringConvertible {
     let description: String
 
@@ -55,5 +53,18 @@ struct UnusableValueError: Error, CustomStringConvertible, CustomDebugStringConv
     }
 
     var description: String { "Unusable value [\(value)] for context [\(context)]" }
+    var debugDescription: String { description }
+}
+
+struct ConversionError: Error, CustomStringConvertible, CustomDebugStringConvertible {
+    private let source: Any
+    private let target: Any
+
+    init(_ source: Any, _ target: Any) {
+        self.source = source
+        self.target = target
+    }
+
+    var description: String { "Cannot convert [\(source)] to \(target)" }
     var debugDescription: String { description }
 }

@@ -15,7 +15,11 @@ struct OPSystem: RPGSystem {
     let classes: [OPClass]
     let origins: [OPOrigin]
 
-    init(id: RPGSystemId, name: String, icon: String, dynLocs: Localizations, classes: [OPClass], origins: [OPOrigin]) {
+    let protections: [OPProtection]
+    let weapons: [OPWeapon]
+    let items: [OPItem]
+    
+    init(id: RPGSystemId, name: String, icon: String, dynLocs: Localizations, classes: [OPClass], origins: [OPOrigin], protections: [OPProtection], weapons: [OPWeapon], items: [OPItem]) {
         self.id = id
         self.name = name
         self.icon = icon
@@ -23,6 +27,10 @@ struct OPSystem: RPGSystem {
 
         self.classes = classes
         self.origins = origins
+
+        self.protections = protections
+        self.weapons = weapons
+        self.items = items
 
         self.mClasses = classes.reduce(into: [:]) { $0[$1.id] = $1 }
         self.mTracks = classes.reduce(into: [:]) { map, classe in classe.tracks.forEach { map[$0.id] = $0 } }
@@ -62,7 +70,8 @@ extension RPGLoadables {
         let origins = try {
             let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Origins.xlsx")
             return try table.enumerateRows().map { row in
-                try OPOrigin(
+                executionContext.put(.row, row)
+                return try OPOrigin(
                     id: table.at(col:"ORIGIN", row).stringId().opOrigin(base.id),
                     power: OPOriginPower(id: table.at(col:"POWER", row).stringId()),
                     baseSkills: table.array(col:"SKILL", row).map {
@@ -76,6 +85,7 @@ extension RPGLoadables {
         let trackPowers = try {
             let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)TrackPowers.xlsx")
             return try table.enumerateRows().reduce(into: [OPClass.Id:[OPTrack.Id:[OPTrackPower]]]()) { byClass, row in
+                executionContext.put(.row, row)
                 let classe = try table.at(col:"CLASS", row).stringId().opClass(base.id)
                 let track = try table.at(col:"TRACK", row).stringId().opTrack(base.id)
                 let power = try OPTrackPower(
@@ -120,6 +130,7 @@ extension RPGLoadables {
         let classPowers = try {
             let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)ClassPowers.xlsx")
             return try table.enumerateRows().reduce(into: [OPClass.Id:[OPClassPower]]()) { byClass, row in
+                executionContext.put(.row, row)
                 let classe = try table.at(col:"CLASS", row).stringId().opClass(base.id)
                 let power = try OPClassPower(
                     id: table.at(col:"POWER", row).stringId(),
@@ -150,6 +161,7 @@ extension RPGLoadables {
         let classes = try {
             let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Classes.xlsx")
             return try table.enumerateRows().map { row in
+                executionContext.put(.row, row)
                 let id = try table.at(col:"CLASS", row).stringId().opClass(base.id)
                 return try OPClass(
                     id: id,
@@ -169,6 +181,52 @@ extension RPGLoadables {
             }
         }()
 
-        return OPSystem(id: base.id, name: base.name, icon: base.icon, dynLocs: base.dynLocs, classes: classes, origins: origins)
+        let protections = try {
+            let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Protections.xlsx")
+            return try table.enumerateRows().map { row in
+                executionContext.put(.row, row)
+                return try OPProtection(
+                    id: table.at(col:"PROTECTION", row).stringId(),
+                    defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
+                    modifications: []
+                )
+            }
+        }()
+
+        let weapons = try {
+            let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Weapons.xlsx")
+            return try table.enumerateRows().map { row in
+                executionContext.put(.row, row)
+                return try OPWeapon(
+                    id: table.at(col:"WEAPON", row).stringId(),
+                    defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
+                    modifications: []
+                )
+            }
+        }()
+
+        let items = try {
+            let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Items.xlsx")
+            return try table.enumerateRows().map { row in
+                executionContext.put(.row, row)
+                return try OPItem(
+                    id: table.at(col:"ITEM", row).stringId(),
+                    defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
+                    modifications: []
+                )
+            }
+        }()
+
+        return OPSystem(
+            id: base.id,
+            name: base.name,
+            icon: base.icon,
+            dynLocs: base.dynLocs,
+            classes: classes,
+            origins: origins,
+            protections: protections,
+            weapons: weapons,
+            items: items
+        )
     }
 }

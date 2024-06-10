@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Pedro Marques. All rights reserved.
 //
 
-import Foundation
 import Expressive
 
 protocol DefenseBonus: LocalizedObject {
@@ -31,6 +30,12 @@ extension ModifiableItem {
 }
 
 struct OPItem: ModifiableItem, Codable {
+    let id: StringId
+    let defenseBonus: Expression?
+    let modifications: [Modification]
+}
+
+struct OPProtection: ModifiableItem, Codable {
     let id: StringId
     let defenseBonus: Expression?
     let modifications: [Modification]

@@ -32,6 +32,14 @@ extension BinaryInteger {
     }
 }
 
+extension Comparable {
+    func clamped(lowerBound: Self, upperBound: Self) -> Self {
+        self < lowerBound ? lowerBound :
+        self > upperBound ? upperBound :
+        self
+    }
+}
+
 extension String {
     var stableHash: Int {
         var hash = 7351

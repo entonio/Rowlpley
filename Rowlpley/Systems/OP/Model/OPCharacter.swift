@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Pedro Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftData
 import UIKit
 import Expressive
@@ -43,9 +42,10 @@ final class OPCharacter: RPGCharacter {
     var rituals: [OPRitual]
     var ammunitions: [OPAmmunition]
     var weapons: [OPWeapon]
+    var protections: [OPProtection]
     var items: [OPItem]
 
-    init(position: IndexPath, names: [String], player: String, icon: StorableImage? = nil, graphicalOrientation: GraphicalOrientation = .standard, system: RPGSystemId, classe: OPClass.Id, track: OPTrack.Id, origin: OPOrigin.Id, nex: OPNex, movement: Int, hitPoints: Int, temporaryHitPoints: Int, effortPoints: Int, sanity: Int, attributesTotal: Int, attributes: [OPAttribute : Int], attributeBonuses: [OPAttributeBonus], classPowers: [OPClassPower], classSkills: [OPSkill], trainingBySkill: [OPSkill : Int], skillBonuses: [OPSkillBonus], resistances: [OPResistance], rituals: [OPRitual], ammunitions: [OPAmmunition], weapons: [OPWeapon], items: [OPItem]) {
+    init(position: IndexPath, names: [String], player: String, icon: StorableImage? = nil, graphicalOrientation: GraphicalOrientation = .standard, system: RPGSystemId, classe: OPClass.Id, track: OPTrack.Id, origin: OPOrigin.Id, nex: OPNex, movement: Int, hitPoints: Int, temporaryHitPoints: Int, effortPoints: Int, sanity: Int, attributesTotal: Int, attributes: [OPAttribute : Int], attributeBonuses: [OPAttributeBonus], classPowers: [OPClassPower], classSkills: [OPSkill], trainingBySkill: [OPSkill : Int], skillBonuses: [OPSkillBonus], resistances: [OPResistance], rituals: [OPRitual], ammunitions: [OPAmmunition], weapons: [OPWeapon], protections: [OPProtection], items: [OPItem]) {
         self.id = UUID()
         self.position = position
         self.names = names
@@ -73,6 +73,7 @@ final class OPCharacter: RPGCharacter {
         self.rituals = rituals
         self.ammunitions = ammunitions
         self.weapons = weapons
+        self.protections = protections
         self.items = items
     }
 
@@ -104,6 +105,7 @@ final class OPCharacter: RPGCharacter {
         case rituals
         case ammunitions
         case weapons
+        case protections
         case items
     }
 
@@ -138,6 +140,7 @@ final class OPCharacter: RPGCharacter {
         self.rituals = try container.decode([OPRitual].self, forKey: .rituals)
         self.ammunitions = try container.decode([OPAmmunition].self, forKey: .ammunitions)
         self.weapons = try container.decode([OPWeapon].self, forKey: .weapons)
+        self.protections = try container.decode([OPProtection].self, forKey: .protections)
         self.items = try container.decode([OPItem].self, forKey: .items)
     }
 
@@ -170,6 +173,7 @@ final class OPCharacter: RPGCharacter {
         try container.encode(rituals, forKey: .rituals)
         try container.encode(ammunitions, forKey: .ammunitions)
         try container.encode(weapons, forKey: .weapons)
+        try container.encode(protections, forKey: .protections)
         try container.encode(items, forKey: .items)
     }
 }
@@ -205,7 +209,6 @@ extension OPCharacter {
 }
 
 extension OPProficiency {
-
     var implicitTags: Set<OPProficiencyTag> {
         if tags.contains(.weapons) {
             return tags.inMissingSets(
@@ -214,7 +217,7 @@ extension OPProficiency {
                 OPProficiencyTag.hands
             ).toSet()
         }
-        if tags.contains(.armors) {
+        if tags.contains(.protections) {
             return tags.inMissingSets(
                 OPProficiencyTag.weights
             ).toSet()

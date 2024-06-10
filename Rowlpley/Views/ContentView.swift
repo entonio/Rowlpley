@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Pedro Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 struct ContentView: View {

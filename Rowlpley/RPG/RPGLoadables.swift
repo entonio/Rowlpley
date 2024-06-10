@@ -2,16 +2,15 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
 import OSLog
 
 class RPGLoadables: ObservableObject {
-    enum Status {
+    enum Status: Equatable {
         case idle
         case updating
         case loading
         case ready
-        case cancelled
+        case cancelled(String)
     }
 
     @Published private(set) var status: Status = .idle
@@ -21,7 +20,6 @@ class RPGLoadables: ObservableObject {
             self.status = status
         }
     }
-
 
     init() {
         reset()
@@ -40,11 +38,28 @@ class RPGLoadables: ObservableObject {
                 dispatchStatus(.loading)
                 try load()
             } catch {
-                Logger().warning("Could not load: [\(error)]")
-                return dispatchStatus(.cancelled)
+                let table = executionContext.get(.table)?.lastPathComponent
+                let row = executionContext.get(.row)
+                var context = (error as CustomStringConvertible).description
+                if let table, let row {
+                    context = "\(table):\(row + 1): \(context)"
+                } else if let table {
+                    context = "\(table): \(context)"
+                }
+                Logger().warning("Could not load system: [\(context)]")
+                return dispatchStatus(.cancelled(context))
             }
 
             dispatchStatus(.ready)
+        }
+    }
+}
+
+extension RPGLoadables.Status {
+    var cancelled: String? {
+        switch self {
+        case .cancelled(let value): value
+        default: nil
         }
     }
 }

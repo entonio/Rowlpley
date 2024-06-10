@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Pedro Marques. All rights reserved.
 //
 
-import Foundation
 import Expressive
 
 enum OPAttribute: Codable, CaseIterable {
@@ -163,7 +162,7 @@ extension OPStrike {
 
 enum OPProficiencyTag: Codable, CaseIterable {
     case weapons
-    case armors
+    case protections
 
     case light
 

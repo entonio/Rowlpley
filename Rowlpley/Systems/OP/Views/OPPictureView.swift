@@ -68,6 +68,3 @@ struct OPPictureView: View {
         }
     }
 }
-
-
-

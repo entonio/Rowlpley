@@ -2,7 +2,6 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 struct ExtentsViewExtent<Extent, Style>: Identifiable where Extent: Numeric, Style: ShapeStyle {
@@ -24,9 +23,10 @@ struct ExtentsViewContext {
 }
 
 struct ExtentsView<Content, Extent, Style> : View where Content: View, Extent: Numeric, Style: ShapeStyle {
+    typealias EV = ExtentsViewExtent<Extent, Style>
 
     let context: ExtentsViewContext
-    let extents: [ExtentsViewExtent<Extent, Style>]
+    let extents: [EV]
     let content: () -> Content
 
     init(context: ExtentsViewContext, _ extents: [ExtentsViewExtent<Extent, Style>], content: @escaping () -> Content) {
@@ -35,30 +35,32 @@ struct ExtentsView<Content, Extent, Style> : View where Content: View, Extent: N
         self.content = content
     }
 
+    func positioned(_ extents: [EV], from: CGFloat, to: CGFloat) -> [(origin: CGFloat, length: CGFloat, extent: EV)] {
+        guard let last = extents.last else { return [] }
+        let total = to - from
+        var nextFrom = from
+        return extents.map {
+            let percent = (Double($0.extent) / Double(last.extent)).clamped(lowerBound: 0, upperBound: 1)
+            let currentFrom = nextFrom
+            let currentTo = total * percent
+            nextFrom = currentTo
+            return (origin: currentFrom, length: currentTo - currentFrom, extent: $0)
+        }
+
+    }
+
     var body: some View {
-        if let max = extents.last {
+        if extents.hasContents {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    Rectangle()
-                        .frame(width: geometry.size.width)
-                        .foregroundStyle(.clear)
-
-                    Rectangle()
-                        .frame(
-                            width: geometry.size.width,
-                            height: context.height
-                        )
-                        .foregroundStyle(max.style)
-                        .offset(y: context.offsetY)
-
-                    ForEach(extents.dropLast().reversed()) { extent in
+                    ForEach(positioned(extents, from: 0, to: geometry.size.width).enumerated().toArray(), id: \.offset) { (_, positioned) in
                         Rectangle()
                             .frame(
-                                width: geometry.size.width * Double(extent.extent) / Double(max.extent),
+                                width: positioned.length,
                                 height: context.height
                             )
-                            .foregroundStyle(extent.style)
-                            .offset(y: context.offsetY)
+                            .foregroundStyle(positioned.extent.style)
+                            .offset(x: positioned.origin, y: context.offsetY)
                     }
 
                     content()

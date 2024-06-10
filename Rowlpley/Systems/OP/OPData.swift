@@ -32,6 +32,7 @@ extension OPCharacter {
             rituals: [],
             ammunitions: [],
             weapons: [],
+            protections: [],
             items: []
         )
         
