@@ -15,11 +15,12 @@ struct OPSystem: RPGSystem {
     let classes: [OPClass]
     let origins: [OPOrigin]
 
-    let protections: [OPProtection]
+    let rituals: [OPRitual]
     let weapons: [OPWeapon]
+    let protections: [OPProtection]
     let items: [OPItem]
     
-    init(id: RPGSystemId, name: String, icon: String, dynLocs: Localizations, classes: [OPClass], origins: [OPOrigin], protections: [OPProtection], weapons: [OPWeapon], items: [OPItem]) {
+    init(id: RPGSystemId, name: String, icon: String, dynLocs: Localizations, classes: [OPClass], origins: [OPOrigin], rituals: [OPRitual], weapons: [OPWeapon], protections: [OPProtection], items: [OPItem]) {
         self.id = id
         self.name = name
         self.icon = icon
@@ -28,8 +29,9 @@ struct OPSystem: RPGSystem {
         self.classes = classes
         self.origins = origins
 
-        self.protections = protections
+        self.rituals = rituals
         self.weapons = weapons
+        self.protections = protections
         self.items = items
 
         self.mClasses = classes.reduce(into: [:]) { $0[$1.id] = $1 }
@@ -181,14 +183,16 @@ extension RPGLoadables {
             }
         }()
 
-        let protections = try {
-            let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Protections.xlsx")
+        let rituals = try {
+            let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Rituals.xlsx")
             return try table.enumerateRows().map { row in
                 executionContext.put(.row, row)
-                return try OPProtection(
-                    id: table.at(col:"PROTECTION", row).stringId(),
-                    defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
-                    modifications: []
+                return try OPRitual(
+                    id: table.at(col:"RITUAL", row).stringId(),
+                    icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
+                    circle: table.at(col:"CIRCLE", row).int(),
+                    element: table.at(col:"ELEMENT", row).opEffect(.elements),
+                    costs: table.at(col:"COSTS", row).csv().map(Int.self)
                 )
             }
         }()
@@ -199,8 +203,33 @@ extension RPGLoadables {
                 executionContext.put(.row, row)
                 return try OPWeapon(
                     id: table.at(col:"WEAPON", row).stringId(),
+                    icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
+                    load: table.at(col:"LOAD", row).int(),
+                    category: table.at(col:"CATEGORY", row).int(),
                     defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
-                    modifications: []
+                    modifications: [],
+                    level: table.at(col:"LEVEL", row).opProficiencyTag(.levels),
+                    range: table.at(col:"RANGE", row).opProficiencyTag(.ranges),
+                    handedness: table.at(col:"HANDEDNESS", row).opProficiencyTag(.handednesses),
+                    hits: table.at(col:"HITS", row).csv().compactMap {
+                        try RPGHit($0)?.opHit()
+                    }
+                )
+            }
+        }()
+
+        let protections = try {
+            let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)Protections.xlsx")
+            return try table.enumerateRows().map { row in
+                executionContext.put(.row, row)
+                return try OPProtection(
+                    id: table.at(col:"PROTECTION", row).stringId(),
+                    icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
+                    load: table.at(col:"LOAD", row).int(),
+                    category: table.at(col:"CATEGORY", row).int(),
+                    defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
+                    modifications: [],
+                    weight: table.at(col:"WEIGHT", row).opProficiencyTag(.weights)
                 )
             }
         }()
@@ -211,8 +240,11 @@ extension RPGLoadables {
                 executionContext.put(.row, row)
                 return try OPItem(
                     id: table.at(col:"ITEM", row).stringId(),
+                    icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
+                    load: table.at(col:"LOAD", row).int(),
+                    category: table.at(col:"CATEGORY", row).int(),
                     defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
-                    modifications: []
+                    domain: table.at(col:"DOMAIN", row).stringId()
                 )
             }
         }()
@@ -224,9 +256,20 @@ extension RPGLoadables {
             dynLocs: base.dynLocs,
             classes: classes,
             origins: origins,
-            protections: protections,
+            rituals: rituals,
             weapons: weapons,
+            protections: protections,
             items: items
         )
+    }
+}
+
+extension Array<String> {
+    func map<T>(_ to: T.Type) throws -> Array<T> {
+        switch to {
+        case is Int.Type: map { Int($0)! as! T }
+        case is Double.Type: map { Double($0)! as! T }
+        default: throw ConversionError(to, [Int.self, Double.self])
+        }
     }
 }

@@ -14,18 +14,20 @@ struct NavigationView: View {
 
     @Environment(\.modelContext) private var modelContext
 
-    @Query private var charactersDnD5: [DnD5Character]
-    @Query private var charactersOP: [OPCharacter]
+    @Query private var dnd5Characters: [DnD5Character]
+    @Query private var opCharacters: [OPCharacter]
+
+    @State var modelVersion = 1
+    var modelDidChange = NotificationCenter.default.publisher(for: .NSPersistentStoreRemoteChange).receive(on: RunLoop.main)
+
+    var opAvailableAddons = OPAvailableAddons()
 
     @State private var selection: AnyHashable?
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
 
     private func allCharacters() -> [any RPGCharacter] {
-        [
-            charactersDnD5 as [any RPGCharacter],
-            charactersOP as [any RPGCharacter]
-        ]
-            .flatMap { $0 }.sorted {
+        (dnd5Characters + opCharacters)
+            .sorted {
                 $0.name < $1.name
             }
     }
@@ -57,6 +59,10 @@ struct NavigationView: View {
                     DnD5CharacterView(character: .constant(character))
                 } else if let character = selection?.base as? OPCharacter {
                     OPCharacterView(character: .constant(character))
+                        .environmentObject(opAvailableAddons)
+                        .onChange(of: modelVersion, initial: true) {
+                            opAvailableAddons.update(character.system.op, opCharacters)
+                        }
                 } else if characters.hasContents {
                     Text("⬅︎ Select a character")
                 } else {
@@ -66,6 +72,9 @@ struct NavigationView: View {
         )
         .navigationSplitViewStyle(.balanced)
         .preferredColorScheme(storableColorScheme.scheme)
+        .onReceive(modelDidChange) { _ in
+            modelVersion += 1
+        }
     }
 }
 

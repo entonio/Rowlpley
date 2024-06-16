@@ -3,6 +3,7 @@
 //
 
 import Expressive
+import Tabular
 
 enum OPAttribute: Codable, CaseIterable {
     case AGI
@@ -124,22 +125,13 @@ enum OPSkill: Codable, CaseIterable {
     case will
 }
 
-enum OPElement {
+enum OPEffect: Codable, CaseIterable, Hashable {
     case red
     case black
     case purple
     case gold
     case white
-    case empty
-}
-
-enum OPStrike: Codable, CaseIterable {
-    case red
-    case black
-    case purple
-    case gold
-    case white
-    case empty
+    case blue
 
     case mental
 
@@ -153,11 +145,15 @@ enum OPStrike: Codable, CaseIterable {
     case ballistic
 }
 
-extension OPStrike {
-    static let weapon:     Set<Self> = [.impact, .piercing, .cutting, .ballistic]
-    static let effect:     Set<Self> = [.chemical, .cold, .fire]
-    static let physical:   Set<Self> = OPStrike.weapon + OPStrike.effect
-    static let paranormal: Set<Self> = [.red, .black, .purple, .gold, .white, .empty]
+extension Set<OPEffect> {
+    static let paranormal: Self = [.red, .black, .purple, .gold, .white, .blue]
+    static let reactive:   Self = [.chemical, .cold, .fire]
+    static let mechanical: Self = [.impact, .piercing, .cutting, .ballistic]
+    static let physical:   Self = .mechanical + .reactive
+}
+
+extension Set<OPEffect> {
+    static let elements:   Self = .paranormal
 }
 
 enum OPProficiencyTag: Codable, CaseIterable {
@@ -178,14 +174,24 @@ enum OPProficiencyTag: Codable, CaseIterable {
     case twoHanded
 }
 
-extension OPProficiencyTag {
-    static let weights: Set<Self> = [.light, .heavy]
+extension Set<OPProficiencyTag> {
+    static let weights:        Self = [.light, .heavy]
 }
 
-extension OPProficiencyTag {
-    static let levels:  Set<Self> = [.simple, .tactical, .heavy]
-    static let ranges:  Set<Self> = [.melee, .fire, .shooting]
-    static let hands:   Set<Self> = [.oneHanded, .twoHanded]
+extension Set<OPProficiencyTag> {
+    static let levels:         Self = [.simple, .tactical, .heavy]
+    static let ranges:         Self = [.melee, .fire, .shooting]
+    static let handednesses:   Self = [.oneHanded, .twoHanded]
+}
+
+extension Slot {
+    func opEffect(_ options: Set<OPEffect>) throws -> OPEffect {
+        try OPEffect(text(), options)
+    }
+
+    func opProficiencyTag(_ options: Set<OPProficiencyTag>) throws -> OPProficiencyTag {
+        try OPProficiencyTag(text(), options)
+    }
 }
 
 struct OPProficiency: LocalizedObject, Codable, Equatable {
@@ -206,7 +212,7 @@ struct OPAttributeBonus: Codable {
 }
 
 struct OPResistance: Codable {
-    let strike: OPStrike
+    let type: OPEffect
     let modifier: RPGModifier
 }
 
@@ -228,7 +234,7 @@ struct OPSkillBonus: Codable {
 extension RPGBonus {
     func opResistance() throws -> OPResistance {
         OPResistance(
-            strike: try OPStrike(target),
+            type: try OPEffect(target),
             modifier: modifier
         )
     }
@@ -255,3 +261,16 @@ extension RPGBonus {
     }
 }
 
+struct OPHit: Codable, Hashable {
+    let type: OPEffect
+    let modifier: RPGModifier
+}
+
+extension RPGHit {
+    func opHit() throws -> OPHit {
+        OPHit(
+            type: try OPEffect(type),
+            modifier: modifier
+        )
+    }
+}

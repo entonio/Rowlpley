@@ -133,22 +133,22 @@
         }
       }
     },
-    "Add Item 🎒" : {
+    "Add Item 👜" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicionar Item 🎒"
+            "value" : "Adicionar Item 👜"
           }
         }
       }
     },
-    "Add Protection 🦺" : {
+    "Add Protection 👷" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicionar Protecção 🦺"
+            "value" : "Adicionar Protecção 👷"
           }
         }
       }
@@ -235,6 +235,9 @@
           }
         }
       }
+    },
+    "Blue" : {
+
     },
     "Characters" : {
       "localizations" : {
@@ -400,6 +403,7 @@
       }
     },
     "Empty" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {

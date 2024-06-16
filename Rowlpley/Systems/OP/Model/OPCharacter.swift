@@ -212,14 +212,14 @@ extension OPProficiency {
     var implicitTags: Set<OPProficiencyTag> {
         if tags.contains(.weapons) {
             return tags.inMissingSets(
-                OPProficiencyTag.levels,
-                OPProficiencyTag.ranges,
-                OPProficiencyTag.hands
+                .levels,
+                .ranges,
+                .handednesses
             ).toSet()
         }
         if tags.contains(.protections) {
             return tags.inMissingSets(
-                OPProficiencyTag.weights
+                .weights
             ).toSet()
         }
         return []

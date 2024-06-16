@@ -10,7 +10,7 @@ import SwiftData
 @main
 struct RowlpleyApp: App {
 
-    @ObservedObject var loadables = RPGLoadables()
+    var loadables = RPGLoadables()
 
     var body: some Scene {
         WindowGroup {

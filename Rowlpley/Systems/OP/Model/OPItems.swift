@@ -8,6 +8,11 @@ protocol DefenseBonus: LocalizedObject {
     var defenseBonus: Expression? { get }
 }
 
+protocol Equipable: DefenseBonus {
+    var load: Int { get }
+    var category: Int { get }
+}
+
 enum Modification: Codable {
     case antibomb
     case shielded
@@ -19,7 +24,7 @@ enum Modification: Codable {
     case improved
 }
 
-protocol ModifiableItem: DefenseBonus {
+protocol ModifiableItem: Equipable {
     var modifications: [Modification] { get }
 }
 
@@ -29,24 +34,56 @@ extension ModifiableItem {
     }
 }
 
-struct OPItem: ModifiableItem, Codable {
+struct OPWeapon: ModifiableItem, Codable, Hashable {
     let id: StringId
+    let icon: String?
+    let load: Int
+    let category: Int
     let defenseBonus: Expression?
     let modifications: [Modification]
+    let level: OPProficiencyTag
+    let range: OPProficiencyTag
+    let handedness: OPProficiencyTag
+    let hits: [OPHit]
 }
 
-struct OPProtection: ModifiableItem, Codable {
+struct OPProtection: ModifiableItem, Codable, Hashable {
     let id: StringId
+    let icon: String?
+    let load: Int
+    let category: Int
     let defenseBonus: Expression?
     let modifications: [Modification]
+    let weight: OPProficiencyTag
 }
 
-struct OPWeapon: ModifiableItem, Codable {
+struct OPItem: DefenseBonus, Codable, Hashable {
     let id: StringId
+    let icon: String?
+    let load: Int
+    let category: Int
     let defenseBonus: Expression?
-    let modifications: [Modification]
+    let domain: StringId
 }
 
 struct OPAmmunition: LocalizedObject, Codable {
     let id: StringId
+}
+
+extension OPCharacter {
+    func add(weapon: OPWeapon) {
+        weapons.append(weapon)
+    }
+}
+
+extension OPCharacter {
+    func add(protection: OPProtection) {
+        protections.append(protection)
+    }
+}
+
+extension OPCharacter {
+    func add(item: OPItem) {
+        items.append(item)
+    }
 }

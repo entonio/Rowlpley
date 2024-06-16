@@ -40,14 +40,19 @@ extension LocalizedEnum {
 }
 
 extension LocalizedEnum {
-    init(_ name: String) throws {
+    init(_ name: String, _ cases: (any Collection<Self>)? = nil) throws {
         let name = name.lowercased()
-        let result = Self.allCases.first {
-            // if .key becomes unavailable, use $0.name == LocalizedStringKey(stringLiteral: name)
+        let result = (cases ?? Self.allCases).first {
+            // if .key becomes unavailable, use
+            // $0.name == LocalizedStringKey(stringLiteral: name)
             $0.name.key.lowercased() == name
         }
         guard let result else {
-            throw ConversionError(name, Self.self)
+            if let cases {
+                throw ConversionError(name, cases)
+            } else {
+                throw ConversionError(name, Self.self)
+            }
         }
         self = result
     }

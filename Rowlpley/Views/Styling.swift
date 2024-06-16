@@ -20,3 +20,9 @@ extension Color {
         }
     }()
 }
+
+extension View {
+    func sectionMenu() -> some View {
+        self.textCase(nil)
+    }
+}

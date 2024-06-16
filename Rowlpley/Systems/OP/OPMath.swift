@@ -95,14 +95,14 @@ extension OPCharacter {
         ])
     }
 
-    private var defenseItems: [any ModifiableItem] {
+    private var defenseItems: [any DefenseBonus] {
         (items + weapons)
             .filter { $0.defenseBonus != nil }
     }
 
     private var defenseItemsMap: [Expression : Expression] {
         defenseItems.reduce(into: [:]) {
-            let name = $1.nameWithModifiers(system.get)
+            let name = ($1 as? (any ModifiableItem))?.nameWithModifiers(system.get) ?? $1.name(system.get)
             $0[Expression.variable(name)] = $1.defenseBonus!
         }
     }

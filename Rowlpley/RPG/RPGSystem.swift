@@ -84,7 +84,7 @@ extension RPGBonus {
     }
 }
 
-struct RPGModifier: Codable {
+struct RPGModifier: Codable, Hashable {
     let formula: Expression?
     let dice: [RPGDice]?
 
@@ -173,7 +173,30 @@ extension RPGModifier {
     }
 }
 
-struct RPGDice: Codable {
+struct RPGHit {
+    let type: String
+    let modifier: RPGModifier
+}
+
+extension RPGHit {
+    init?(_ string: String) throws {
+        let string = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        if string.isEmpty {
+            return nil
+        }
+        guard let match = string.wholeMatch(of: /([^\s]+)\s+(.+)/)?.output else {
+            throw UnusableValueError(string, for: Self.self)
+        }
+        let modifier = try RPGModifier(String(match.1))
+        guard let modifier else {
+            throw UnusableValueError(string, for: Self.self)
+        }
+        self.type = String(match.2)
+        self.modifier = modifier
+    }
+}
+
+struct RPGDice: Codable, Hashable {
     let amount: Int
     let sides: Int?
 }

@@ -7,6 +7,8 @@ import SwiftUI
 struct OPCharacterView: View {
     @Binding var character: OPCharacter
 
+    @EnvironmentObject var available: OPAvailableAddons
+
     var body: some View {
         List {
             let pictureOpacity = 1.0
@@ -38,6 +40,8 @@ struct OPCharacterView: View {
                 OPDefensesView(character: $character)
             }
             
+            let system = character.system.op
+
             Section {
                 ForEach(character.rituals) {
                     OPRitualView(character: character, ritual: $0)
@@ -47,7 +51,15 @@ struct OPCharacterView: View {
                     Text("Rituals")
                     Spacer()
                     Menu("Add Ritual ⚡", systemImage: "plus") {
+                        ForEach(available.rituals) { ritual in
+                            Button {
+                                character.add(ritual: ritual)
+                            } label: {
+                                MenuLabel(ritual.icon, ritual.name(system))
+                            }
+                        }
                     }
+                    .sectionMenu()
                 }
             }
 
@@ -60,7 +72,15 @@ struct OPCharacterView: View {
                     Text("Weapons")
                     Spacer()
                     Menu("Add Weapon 🔫", systemImage: "plus") {
+                        ForEach(available.weapons) { weapon in
+                            Button {
+                                character.add(weapon: weapon)
+                            } label: {
+                                MenuLabel(weapon.icon, weapon.name(system))
+                            }
+                        }
                     }
+                    .sectionMenu()
                 }
             }
 
@@ -72,8 +92,16 @@ struct OPCharacterView: View {
                 HStack {
                     Text("Protections")
                     Spacer()
-                    Menu("Add Protection 🦺", systemImage: "plus") {
+                    Menu("Add Protection 👷", systemImage: "plus") {
+                        ForEach(available.protections) { protection in
+                            Button {
+                                character.add(protection: protection)
+                            } label: {
+                                MenuLabel(protection.icon, protection.name(system))
+                            }
+                        }
                     }
+                    .sectionMenu()
                 }
             }
 
@@ -85,8 +113,16 @@ struct OPCharacterView: View {
                 HStack {
                     Text("Items")
                     Spacer()
-                    Menu("Add Item 🎒", systemImage: "plus") {
+                    Menu("Add Item 👜", systemImage: "plus") {
+                        ForEach(available.items) { item in
+                            Button {
+                                character.add(item: item)
+                            } label: {
+                                MenuLabel(item.icon, item.name(system))
+                            }
+                        }
                     }
+                    .sectionMenu()
                 }
             }
 
@@ -102,5 +138,44 @@ struct OPCharacterView: View {
 }
 
 #Preview {
-    OPCharacterView(character: .constant(OPCharacter(position: IndexPath(row: 0, section: 0), names: ["C"], player: "P", system: OPSystem(id: RPGSystemId(id: "OP"), name: "OP", icon: "🍹", dynLocs: Localizations(), classes: [], origins: [], protections: [], weapons: [], items: []), nex: OPNex(percent: 10))))
+    OPCharacterView(character: .constant(OPCharacter(position: IndexPath(row: 0, section: 0), names: ["C"], player: "P", system: OPSystem(id: RPGSystemId(id: "OP"), name: "OP", icon: "🍹", dynLocs: Localizations(), classes: [], origins: [], rituals: [], weapons: [], protections: [], items: []), nex: OPNex(percent: 10))))
+        .environmentObject(OPAvailableAddons())
+}
+
+class OPAvailableAddons: ObservableObject {
+    @Published var rituals: [OPRitual] = []
+    @Published var weapons: [OPWeapon] = []
+    @Published var protections: [OPProtection] = []
+    @Published var items: [OPItem] = []
+}
+
+extension OPAvailableAddons {
+    func update(_ system: OPSystem, _ characters: [OPCharacter]) {
+        rituals = Set(system.rituals + characters.flatMap { $0.rituals }).sorted(using: KeyPathComparator(\.id.content))
+        weapons = Set(system.weapons + characters.flatMap { $0.weapons }).sorted(using: KeyPathComparator(\.id.content))
+        protections = Set(system.protections + characters.flatMap { $0.protections }).sorted(using: KeyPathComparator(\.id.content))
+        items = Set(system.items + characters.flatMap { $0.items }).sorted(using: KeyPathComparator(\.id.content))
+    }
+}
+
+struct MenuLabel: View {
+    let icon: String?
+    let main: String
+
+    init(_ icon: String? = nil, _ main: String) {
+        self.icon = icon
+        self.main = main
+    }
+
+    var body: some View {
+        Text(text)
+    }
+
+    var text: String {
+        if let icon {
+            "\(icon) \(main)"
+        } else {
+            main
+        }
+    }
 }

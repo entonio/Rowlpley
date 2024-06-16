@@ -33,6 +33,15 @@ extension Sequence where Element: Hashable {
     }
 }
 
+extension Array {
+    public static func + (lhs: Self, rhs: Self) -> Self {
+        var result: Self = []
+        result.append(contentsOf: lhs)
+        result.append(contentsOf: rhs)
+        return result
+    }
+}
+
 extension Set {
     public static func + (lhs: Self, rhs: Self) -> Self {
         lhs.union(rhs)

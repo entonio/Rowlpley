@@ -29,7 +29,7 @@ extension OPStat: LocalizedEnum {
     }
 }
 
-extension OPStrike: LocalizedEnum {
+extension OPEffect: LocalizedEnum {
     var name: LocalizedStringKey {
         switch self {
         case .red:       "Red"
@@ -37,7 +37,7 @@ extension OPStrike: LocalizedEnum {
         case .purple:    "Purple"
         case .gold:      "Gold"
         case .white:     "White"
-        case .empty:     "Empty"
+        case .blue:      "Blue"
         case .mental:    "Mental"
         case .chemical:  "Chemical"
         case .cold:      "Cold"

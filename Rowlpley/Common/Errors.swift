@@ -32,14 +32,27 @@ struct PreconditionError: Error, CustomStringConvertible, CustomDebugStringConve
     var debugDescription: String { description }
 }
 
-struct UnexpectedValueError: Error, CustomStringConvertible, CustomDebugStringConvertible {
-    private let value: Any
+struct UnexpectedValueError<T>: Error, CustomStringConvertible, CustomDebugStringConvertible {
+    private let value: T
+    private let options: (any Collection<T>)?
 
-    init(_ value: Any) {
+    init(_ value: T) {
         self.value = value
+        self.options = nil
     }
 
-    var description: String { "Unexpected value: [\(value)]" }
+    init(_ value: T, _ options: any Collection<T>) {
+        self.value = value
+        self.options = options
+    }
+
+    var description: String {
+        if let options {
+            "Unexpected value: [\(value)] is not one of \(options)"
+        } else {
+            "Unexpected value: [\(value)]"
+        }
+    }
     var debugDescription: String { description }
 }
 
@@ -56,15 +69,29 @@ struct UnusableValueError: Error, CustomStringConvertible, CustomDebugStringConv
     var debugDescription: String { description }
 }
 
-struct ConversionError: Error, CustomStringConvertible, CustomDebugStringConvertible {
-    private let source: Any
-    private let target: Any
+struct ConversionError<S, T>: Error, CustomStringConvertible, CustomDebugStringConvertible {
+    private let source: S
+    private let target: T.Type
+    private let options: (any Collection<T>)?
 
-    init(_ source: Any, _ target: Any) {
+    init(_ source: S, _ target: T.Type) {
         self.source = source
         self.target = target
+        self.options = nil
     }
 
-    var description: String { "Cannot convert [\(source)] to \(target)" }
+    init(_ source: S, _ options: any Collection<T>) {
+        self.source = source
+        self.target = T.self
+        self.options = options
+    }
+
+    var description: String {
+        if let options {
+            "Cannot convert [\(source)] to any of \(options)"
+        } else {
+            "Cannot convert [\(source)] to \(target)"
+        }
+    }
     var debugDescription: String { description }
 }
