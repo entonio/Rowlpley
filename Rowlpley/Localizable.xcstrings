@@ -16,6 +16,16 @@
     "%@" : {
 
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%@%@%@" : {
       "localizations" : {
         "en" : {
@@ -237,7 +247,14 @@
       }
     },
     "Blue" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azul"
+          }
+        }
+      }
     },
     "Characters" : {
       "localizations" : {
@@ -275,6 +292,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esquema de cores:"
+          }
+        }
+      }
+    },
+    "ColorScheme.Dark" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escuro"
+          }
+        }
+      }
+    },
+    "ColorScheme.Light" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
+          }
+        }
+      }
+    },
+    "ColorScheme.System" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sistema"
           }
         }
       }
@@ -332,16 +397,6 @@
     "d" : {
 
     },
-    "Dark" : {
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escuro"
-          }
-        }
-      }
-    },
     "Deceiving" : {
       "localizations" : {
         "pt-PT" : {
@@ -392,23 +447,15 @@
         }
       }
     },
+    "Documents" : {
+
+    },
     "Effort Points" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pontos de Esforço"
-          }
-        }
-      }
-    },
-    "Empty" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vazio"
           }
         }
       }
@@ -433,6 +480,9 @@
         }
       }
     },
+    "Fifth Circle" : {
+
+    },
     "Files skipped" : {
       "localizations" : {
         "pt-PT" : {
@@ -453,6 +503,16 @@
         }
       }
     },
+    "First Circle" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primeiro Círculo"
+          }
+        }
+      }
+    },
     "FOR" : {
 
     },
@@ -465,6 +525,9 @@
           }
         }
       }
+    },
+    "Fourth Circle" : {
+
     },
     "Gold" : {
       "localizations" : {
@@ -600,7 +663,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Claro"
+            "value" : "Leve"
           }
         }
       }
@@ -861,6 +924,19 @@
         }
       }
     },
+    "Second Circle" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segundo Círculo"
+          }
+        }
+      }
+    },
+    "Seventh Circle" : {
+
+    },
     "Shooting" : {
       "localizations" : {
         "pt-PT" : {
@@ -880,6 +956,9 @@
           }
         }
       }
+    },
+    "Sixth Circle" : {
+
     },
     "Skills" : {
       "localizations" : {
@@ -941,16 +1020,6 @@
         }
       }
     },
-    "System" : {
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sistema"
-          }
-        }
-      }
-    },
     "Tactical" : {
       "localizations" : {
         "pt-PT" : {
@@ -980,6 +1049,9 @@
           }
         }
       }
+    },
+    "Third Circle" : {
+
     },
     "Two-handed" : {
       "localizations" : {

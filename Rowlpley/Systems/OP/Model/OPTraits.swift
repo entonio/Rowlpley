@@ -125,7 +125,7 @@ enum OPSkill: Codable, CaseIterable {
     case will
 }
 
-enum OPEffect: Codable, CaseIterable, Hashable {
+enum OPEffect: Codable, CaseIterable, Hashable, Comparable {
     case red
     case black
     case purple
@@ -156,19 +156,19 @@ extension Set<OPEffect> {
     static let elements:   Self = .paranormal
 }
 
-enum OPProficiencyTag: Codable, CaseIterable {
+enum OPProficiencyTag: Codable, CaseIterable, Comparable {
     case weapons
     case protections
 
     case light
 
-    case melee
-    case fire
-    case shooting
-
     case simple
     case tactical
     case heavy
+
+    case melee
+    case shooting
+    case fire
 
     case oneHanded
     case twoHanded
@@ -180,18 +180,8 @@ extension Set<OPProficiencyTag> {
 
 extension Set<OPProficiencyTag> {
     static let levels:         Self = [.simple, .tactical, .heavy]
-    static let ranges:         Self = [.melee, .fire, .shooting]
+    static let ranges:         Self = [.melee, .shooting, .fire]
     static let handednesses:   Self = [.oneHanded, .twoHanded]
-}
-
-extension Slot {
-    func opEffect(_ options: Set<OPEffect>) throws -> OPEffect {
-        try OPEffect(text(), options)
-    }
-
-    func opProficiencyTag(_ options: Set<OPProficiencyTag>) throws -> OPProficiencyTag {
-        try OPProficiencyTag(text(), options)
-    }
 }
 
 struct OPProficiency: LocalizedObject, Codable, Equatable {

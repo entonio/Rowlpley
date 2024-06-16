@@ -102,3 +102,27 @@ extension OPProficiencyTag: LocalizedEnum {
         }
     }
 }
+
+extension OPRitualCircle: LocalizedEnum {
+    var name: LocalizedStringKey {
+        switch self {
+        case .first:     "First Circle"
+        case .second:   "Second Circle"
+        case .third:     "Third Circle"
+        case .fourth:   "Fourth Circle"
+        case .fifth:     "Fifth Circle"
+        case .sixth:     "Sixth Circle"
+        case .seventh: "Seventh Circle"
+        }
+    }
+}
+
+extension OPItemDomain: LocalizedEnum {
+    var name: LocalizedStringKey {
+        switch self {
+        case .medicine:   "Medicine"
+        case .profession: "Profession"
+        case .documents:  "Documents"
+        }
+    }
+}

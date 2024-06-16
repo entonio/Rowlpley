@@ -3,6 +3,7 @@
 //
 
 import Expressive
+import SwiftUI
 
 protocol DefenseBonus: LocalizedObject {
     var defenseBonus: Expression? { get }
@@ -10,7 +11,7 @@ protocol DefenseBonus: LocalizedObject {
 
 protocol Equipable: DefenseBonus {
     var load: Int { get }
-    var category: Int { get }
+    var category: OPItemCategory { get }
 }
 
 enum Modification: Codable {
@@ -38,7 +39,7 @@ struct OPWeapon: ModifiableItem, Codable, Hashable {
     let id: StringId
     let icon: String?
     let load: Int
-    let category: Int
+    let category: OPItemCategory
     let defenseBonus: Expression?
     let modifications: [Modification]
     let level: OPProficiencyTag
@@ -47,23 +48,23 @@ struct OPWeapon: ModifiableItem, Codable, Hashable {
     let hits: [OPHit]
 }
 
-struct OPProtection: ModifiableItem, Codable, Hashable {
+struct OPProtection: ModifiableItem, Codable, Hashable, WithOptionalIcon {
     let id: StringId
     let icon: String?
     let load: Int
-    let category: Int
+    let category: OPItemCategory
     let defenseBonus: Expression?
     let modifications: [Modification]
     let weight: OPProficiencyTag
 }
 
-struct OPItem: DefenseBonus, Codable, Hashable {
+struct OPItem: DefenseBonus, Codable, Hashable, WithOptionalIcon {
     let id: StringId
     let icon: String?
     let load: Int
-    let category: Int
+    let category: OPItemCategory
     let defenseBonus: Expression?
-    let domain: StringId
+    let domain: OPItemDomain
 }
 
 struct OPAmmunition: LocalizedObject, Codable {
@@ -85,5 +86,29 @@ extension OPCharacter {
 extension OPCharacter {
     func add(item: OPItem) {
         items.append(item)
+    }
+}
+
+enum OPItemDomain: Codable, CaseIterable, Comparable {
+    case medicine
+    case profession
+    case documents
+}
+
+enum OPItemCategory: Int, Codable {
+    case first = 1
+    case second
+    case third
+    case fourth
+    case fifth
+}
+
+extension OPItemCategory {
+    init(_ number: Int) throws {
+        if let i = Self(rawValue: number) {
+            self = i
+        } else {
+            throw UnexpectedValueError(number, 1...5)
+        }
     }
 }

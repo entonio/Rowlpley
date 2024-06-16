@@ -34,9 +34,9 @@ struct OPSystem: RPGSystem {
         self.protections = protections
         self.items = items
 
-        self.mClasses = classes.reduce(into: [:]) { $0[$1.id] = $1 }
-        self.mTracks = classes.reduce(into: [:]) { map, classe in classe.tracks.forEach { map[$0.id] = $0 } }
-        self.mOrigins = origins.reduce(into: [:]) { $0[$1.id] = $1 }
+        self.mClasses = classes.map(by: \.id)
+        self.mTracks = classes.flatMap(\.tracks).map(by: \.id)
+        self.mOrigins = origins.map(by: \.id)
     }
 
     private let mClasses: [OPClass.Id: OPClass]
@@ -86,37 +86,33 @@ extension RPGLoadables {
 
         let trackPowers = try {
             let table = try load(table: "Loadables/Systems/\(systemId)/\(systemId)TrackPowers.xlsx")
-            return try table.enumerateRows().reduce(into: [OPClass.Id:[OPTrack.Id:[OPTrackPower]]]()) { byClass, row in
+            return try table.enumerateRows().lazy.map { row in
                 executionContext.put(.row, row)
-                let classe = try table.at(col:"CLASS", row).stringId().opClass(base.id)
-                let track = try table.at(col:"TRACK", row).stringId().opTrack(base.id)
-                let power = try OPTrackPower(
-                    id: table.at(col:"POWER", row).stringId(),
-                    nex: OPNex(percent: table.at(col:"NEX", row).int()),
-                    defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
-                    resistances: table.at(col: "RESISTANCES", row).csv().compactMap {
-                        try RPGBonus($0)?.opResistance()
-                    },
-                    statBonuses: table.at(col: "STATS", row).csv().compactMap {
-                        try RPGBonus($0)?.opStatBonus()
-                    },
-                    skillBonuses: table.at(col: "SKILLS", row).csv().compactMap {
-                        try RPGBonus($0)?.opSkillBonus()
-                    },
-                    itemBonuses: table.at(col: "ITEMS", row).csv().compactMap {
-                        try RPGBonus($0)?.opItemBonus()
-                    },
-                    proficiencies: table.at(col: "PROFICIENCIES", row).csv().compactMap {
-                        $0.isEmpty ? nil : try OPProficiency(id: $0.stringId())
-                    }
+                return (
+                    classe: try table.at(col:"CLASS", row).stringId().opClass(base.id),
+                    track: try table.at(col:"TRACK", row).stringId().opTrack(base.id),
+                    power: try OPTrackPower(
+                        id: table.at(col:"POWER", row).stringId(),
+                        nex: OPNex(percent: table.at(col:"NEX", row).int()),
+                        defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
+                        resistances: table.at(col: "RESISTANCES", row).csv().compactMap {
+                            try RPGBonus($0)?.opResistance()
+                        },
+                        statBonuses: table.at(col: "STATS", row).csv().compactMap {
+                            try RPGBonus($0)?.opStatBonus()
+                        },
+                        skillBonuses: table.at(col: "SKILLS", row).csv().compactMap {
+                            try RPGBonus($0)?.opSkillBonus()
+                        },
+                        itemBonuses: table.at(col: "ITEMS", row).csv().compactMap {
+                            try RPGBonus($0)?.opItemBonus()
+                        },
+                        proficiencies: table.at(col: "PROFICIENCIES", row).csv().compactMap {
+                            $0.isEmpty ? nil : try OPProficiency(id: $0.stringId())
+                        }
+                    )
                 )
-
-                var byTrack = byClass[classe] ?? [:]
-                var trackPowers = byTrack[track] ?? []
-                trackPowers.append(power)
-                byTrack[track] = trackPowers
-                byClass[classe] = byTrack
-            }
+            }.group(\.power, by: \.classe, \.track)
         }()
 
         let tracks = trackPowers.mapValues { byTrack in
@@ -190,7 +186,7 @@ extension RPGLoadables {
                 return try OPRitual(
                     id: table.at(col:"RITUAL", row).stringId(),
                     icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
-                    circle: table.at(col:"CIRCLE", row).int(),
+                    circle: table.at(col:"CIRCLE", row).opCircle(),
                     element: table.at(col:"ELEMENT", row).opEffect(.elements),
                     costs: table.at(col:"COSTS", row).csv().map(Int.self)
                 )
@@ -205,7 +201,7 @@ extension RPGLoadables {
                     id: table.at(col:"WEAPON", row).stringId(),
                     icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
                     load: table.at(col:"LOAD", row).int(),
-                    category: table.at(col:"CATEGORY", row).int(),
+                    category: table.at(col:"CATEGORY", row).opCategory(),
                     defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
                     modifications: [],
                     level: table.at(col:"LEVEL", row).opProficiencyTag(.levels),
@@ -226,7 +222,7 @@ extension RPGLoadables {
                     id: table.at(col:"PROTECTION", row).stringId(),
                     icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
                     load: table.at(col:"LOAD", row).int(),
-                    category: table.at(col:"CATEGORY", row).int(),
+                    category: table.at(col:"CATEGORY", row).opCategory(),
                     defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
                     modifications: [],
                     weight: table.at(col:"WEIGHT", row).opProficiencyTag(.weights)
@@ -242,9 +238,9 @@ extension RPGLoadables {
                     id: table.at(col:"ITEM", row).stringId(),
                     icon: table.at(col:"ICON", row).trimmed.nilIfEmpty,
                     load: table.at(col:"LOAD", row).int(),
-                    category: table.at(col:"CATEGORY", row).int(),
+                    category: table.at(col:"CATEGORY", row).opCategory(),
                     defenseBonus: try? table.at(col:"DEFENSE", row).expression(),
-                    domain: table.at(col:"DOMAIN", row).stringId()
+                    domain: table.at(col:"DOMAIN", row).opDomain()
                 )
             }
         }()

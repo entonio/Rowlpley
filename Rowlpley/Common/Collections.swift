@@ -10,6 +10,65 @@ extension Collection {
     }
 }
 
+extension Collection {
+    func map<K1: Hashable>(by key1: KeyPath<Element, K1>, onDuplicateKey: ((K1, Element, Element, inout [K1: Element]) throws -> Void)? = nil) rethrows -> [K1: Element] {
+        try map(\.self, by: key1, onDuplicateKey: onDuplicateKey)
+    }
+
+    func map<K1: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>, onDuplicateKey: ((K1, V, V, inout [K1: V]) throws -> Void)? = nil) rethrows -> [K1: V] {
+        if let onDuplicateKey {
+            try reduce(into: [K1: V]()) {
+                let k1 = $1[keyPath: key1]
+                let v = $1[keyPath: value]
+                if let existing = $0[k1] {
+                    try onDuplicateKey(k1, existing, v, &$0)
+                } else {
+                    $0[k1] = v
+                }
+            }
+        } else {
+            reduce(into: [K1: V]()) {
+                let k1 = $1[keyPath: key1]
+                let v = $1[keyPath: value]
+                $0[k1] = v
+            }
+        }
+    }
+}
+
+extension Collection {
+    func group<K1: Hashable>(by key1: KeyPath<Element, K1>) -> [K1: [Element]] {
+        group(\.self, by: key1)
+    }
+
+    func group<K1: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>) -> [K1: [V]] {
+        reduce(into: [K1: [V]]()) {
+            let k1 = $1[keyPath: key1]
+            let v = $1[keyPath: value]
+            var c1 = $0[k1] ?? []
+            c1.append(v)
+            $0[k1] = c1
+        }
+    }
+
+    func group<K1: Hashable, K2: Hashable>(by key1: KeyPath<Element, K1>, _ key2: KeyPath<Element, K2>) -> [K1: [K2: [Element]]] {
+        group(\.self, by: key1, key2)
+    }
+
+    func group<K1: Hashable, K2: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>, _ key2: KeyPath<Element, K2>) -> [K1: [K2: [V]]] {
+        reduce(into: [K1: [K2: [V]]]()) {
+            let k1 = $1[keyPath: key1]
+            let k2 = $1[keyPath: key2]
+            let v = $1[keyPath: value]
+            var c1 = $0[k1] ?? [:]
+            var c2 = c1[k2] ?? []
+            c2.append(v)
+            c1[k2] = c2
+            $0[k1] = c1
+        }
+    }
+}
+
 extension Sequence {
     @inlinable func reduce<T, U>(_ first: T, _ second: U, _ updateAccumulatingResult: (Element, inout T, inout U) throws -> ()) rethrows -> (T, U) {
         var first = first
@@ -33,9 +92,9 @@ extension Sequence where Element: Hashable {
     }
 }
 
-extension Array {
-    public static func + (lhs: Self, rhs: Self) -> Self {
-        var result: Self = []
+extension Sequence {
+    public static func + (lhs: Self, rhs: Self) -> [Self.Element] {
+        var result: [Self.Element] = []
         result.append(contentsOf: lhs)
         result.append(contentsOf: rhs)
         return result

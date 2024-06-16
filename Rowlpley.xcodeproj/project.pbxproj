@@ -34,6 +34,9 @@
 		0039C9C62BD0ABFB009E0E02 /* OPSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039C9C52BD0ABFB009E0E02 /* OPSystem.swift */; };
 		003A4B1F2C0A48B40010F344 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A4B1E2C0A48B40010F344 /* Lib.swift */; };
 		003A4B212C0A4A370010F344 /* CharacterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003A4B202C0A4A370010F344 /* CharacterList.swift */; };
+		003D544E2C1F41B10033203F /* Tabular+OP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D544D2C1F41B10033203F /* Tabular+OP.swift */; };
+		003D54502C1F46CF0033203F /* OPAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D544F2C1F46CF0033203F /* OPAvailable.swift */; };
+		003D54522C1F5A250033203F /* OPIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D54512C1F5A250033203F /* OPIcons.swift */; };
 		0042AAD02C163F9700429BBB /* Loadables in Resources */ = {isa = PBXBuildFile; fileRef = 0042AACF2C163F9700429BBB /* Loadables */; };
 		0048DE8C2BFC2BBC00D7A816 /* DeSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048DE8B2BFC2BBC00D7A816 /* DeSerialization.swift */; };
 		0048DE8E2BFD808400D7A816 /* Checksum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048DE8D2BFD808400D7A816 /* Checksum.swift */; };
@@ -178,6 +181,9 @@
 		0039C9C52BD0ABFB009E0E02 /* OPSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPSystem.swift; sourceTree = "<group>"; };
 		003A4B1E2C0A48B40010F344 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		003A4B202C0A4A370010F344 /* CharacterList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterList.swift; sourceTree = "<group>"; };
+		003D544D2C1F41B10033203F /* Tabular+OP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tabular+OP.swift"; sourceTree = "<group>"; };
+		003D544F2C1F46CF0033203F /* OPAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPAvailable.swift; sourceTree = "<group>"; };
+		003D54512C1F5A250033203F /* OPIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPIcons.swift; sourceTree = "<group>"; };
 		0042AACF2C163F9700429BBB /* Loadables */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Loadables; sourceTree = "<group>"; };
 		0048DE8B2BFC2BBC00D7A816 /* DeSerialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeSerialization.swift; sourceTree = "<group>"; };
 		0048DE8D2BFD808400D7A816 /* Checksum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checksum.swift; sourceTree = "<group>"; };
@@ -394,9 +400,11 @@
 			isa = PBXGroup;
 			children = (
 				0039C9C52BD0ABFB009E0E02 /* OPSystem.swift */,
+				003D544F2C1F46CF0033203F /* OPAvailable.swift */,
 				00F351382B9408CB00CFD445 /* OPMath.swift */,
 				00F3513C2B9408DC00CFD445 /* OPData.swift */,
 				00E623B42C07F2B100FAD19D /* OPPreloaded.swift */,
+				003D54512C1F5A250033203F /* OPIcons.swift */,
 				00F3513A2B9408D700CFD445 /* OPStrings.swift */,
 				00F3514A2B94FC6D00CFD445 /* Model */,
 				00F3514B2B94FCD300CFD445 /* Views */,
@@ -483,6 +491,7 @@
 				0033E8832B4B0327001E135C /* OPRituals.swift */,
 				0033E8822B4B0327001E135C /* OPItems.swift */,
 				008AAEA12BA7A26300C608E2 /* OPRelations.swift */,
+				003D544D2C1F41B10033203F /* Tabular+OP.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -785,12 +794,14 @@
 				008AAEA22BA7A26300C608E2 /* OPRelations.swift in Sources */,
 				00AC753B2B9AA41F00D77982 /* Lang.swift in Sources */,
 				00F351432B940A3F00CFD445 /* DnD5Data.swift in Sources */,
+				003D54502C1F46CF0033203F /* OPAvailable.swift in Sources */,
 				001646052BED94C6005AF389 /* Styling.swift in Sources */,
 				0048DE8E2BFD808400D7A816 /* Checksum.swift in Sources */,
 				00688C5C2C015A3E00101FE2 /* LoadingView.swift in Sources */,
 				001646032BED9434005AF389 /* AverageColor.swift in Sources */,
 				001646002BED93C6005AF389 /* ColorInvert.swift in Sources */,
 				0016460B2BED9925005AF389 /* RPGNames.swift in Sources */,
+				003D54522C1F5A250033203F /* OPIcons.swift in Sources */,
 				0033E8472B4A3791001E135C /* OPCharacter.swift in Sources */,
 				00B26D952BF95C4B0058FCDC /* StringId.swift in Sources */,
 				00F351FD2B953ADC00CFD445 /* SwiftUI.swift in Sources */,
@@ -809,6 +820,7 @@
 				0033E8862B4B03EF001E135C /* OPTraits.swift in Sources */,
 				00688C512BFE8AB000101FE2 /* RPGLoadables+Update.swift in Sources */,
 				00C5E2372BE7FA30002B8283 /* OPWeaponsViews.swift in Sources */,
+				003D544E2C1F41B10033203F /* Tabular+OP.swift in Sources */,
 				001646072BED94DB005AF389 /* CharacterLink.swift in Sources */,
 				00688C552BFE8CAB00101FE2 /* DataFS.swift in Sources */,
 				0039C9C42BD0AB4A009E0E02 /* DnD5System.swift in Sources */,

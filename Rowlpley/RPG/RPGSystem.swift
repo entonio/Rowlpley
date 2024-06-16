@@ -12,11 +12,10 @@ enum RPGSystemType: Codable, CaseIterable {
     case OP
 }
 
-protocol RPGSystem {
+protocol RPGSystem: WithIcon {
     var id: RPGSystemId { get }
     var type: RPGSystemType { get }
     var name: String { get }
-    var icon: String { get }
     var dynLocs: Localizations { get }
 }
 

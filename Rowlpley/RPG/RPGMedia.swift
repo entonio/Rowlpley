@@ -19,3 +19,11 @@ struct RPGMedia {
         }
     }
 }
+
+protocol WithIcon {
+    var icon: String { get }
+}
+
+protocol WithOptionalIcon {
+    var icon: String? { get }
+}

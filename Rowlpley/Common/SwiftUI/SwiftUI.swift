@@ -111,9 +111,9 @@ enum StorableColorScheme: Int, Hashable, CaseIterable {
 
     public var name: LocalizedStringKey {
         switch self {
-        case .system: "System"
-        case .light: "Light"
-        case .dark: "Dark"
+        case .system: "ColorScheme.System"
+        case .light: "ColorScheme.Light"
+        case .dark: "ColorScheme.Dark"
         }
     }
 
