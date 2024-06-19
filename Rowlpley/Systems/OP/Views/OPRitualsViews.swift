@@ -10,7 +10,14 @@ struct OPRitualsMenu: View {
 
     var body: some View {
         let system = character.system.op
-        ForEach(available.rituals.sorted(using: KeyPathComparator(\.key)), id: \.key) { element, circles in
+
+        let unused = available.rituals.compactMapValues {
+            $0.compactMapValues {
+                $0 - character.rituals
+            }
+        }
+
+        ForEach(unused.sorted(using: KeyPathComparator(\.key)), id: \.key) { element, circles in
             Menu("\(Text(element.icon)) \(Text(element.name))") {
                 ForEach(circles.sorted(using: KeyPathComparator(\.key)), id: \.key) { circle, rituals in
                     Section(circle.name) {
@@ -24,6 +31,24 @@ struct OPRitualsMenu: View {
                     }
                 }
             }
+        }
+
+        Section {
+            Button {
+                character.add(ritual: .custom)
+            } label: {
+                MenuLabel(nil, "Custom...")
+            }
+        }
+    }
+}
+
+struct OPRitualsInventory: View {
+    @Binding var character: OPCharacter
+
+    var body: some View {
+        ForEach(character.rituals) {
+            OPRitualView(character: character, ritual: $0)
         }
     }
 }

@@ -10,6 +10,7 @@ struct OPItemsMenu: View {
 
     var body: some View {
         let system = character.system.op
+
         ForEach(available.items.sorted(using: KeyPathComparator(\.key)), id: \.key) { domain, items in
             Section("\(Text(domain.icon)) \(Text(domain.name))") {
                 ForEach(items) { item in
@@ -20,6 +21,22 @@ struct OPItemsMenu: View {
                     }
                 }
             }
+        }
+
+        Button {
+            character.add(item: .custom)
+        } label: {
+            MenuLabel(nil, "Custom...")
+        }
+    }
+}
+
+struct OPItemsInventory: View {
+    @Binding var character: OPCharacter
+
+    var body: some View {
+        ForEach(character.items) {
+            OPItemView(character: character, item: $0)
         }
     }
 }

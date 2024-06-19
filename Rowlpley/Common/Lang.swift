@@ -75,3 +75,8 @@ protocol Positionable {
 extension IndexPath {
     static let zero = IndexPath(row: 0, section: 0)
 }
+
+@_transparent
+public func notImplemented(file: StaticString = #file, line: UInt = #line) -> Never {
+    fatalError("Not implemented!", file: file, line: line)
+}

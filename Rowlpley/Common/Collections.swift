@@ -2,6 +2,8 @@
 // Copyright © 2024 Antonio Marques. All rights reserved.
 //
 
+import Foundation
+
 extension Collection {
     var hasContents: Bool { !isEmpty }
 
@@ -11,11 +13,28 @@ extension Collection {
 }
 
 extension Collection {
-    func map<K1: Hashable>(by key1: KeyPath<Element, K1>, onDuplicateKey: ((K1, Element, Element, inout [K1: Element]) throws -> Void)? = nil) rethrows -> [K1: Element] {
-        try map(\.self, by: key1, onDuplicateKey: onDuplicateKey)
+    func counted() -> [Element: Int] where Element: Hashable {
+        reduce(into: [Element: Int]()) {
+            $0[$1] = ($0[$1] ?? 0) + 1
+        }
     }
 
-    func map<K1: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>, onDuplicateKey: ((K1, V, V, inout [K1: V]) throws -> Void)? = nil) rethrows -> [K1: V] {
+    func counted<K1: Hashable>(by key1: KeyPath<Element, K1>) -> [K1: Int] {
+        reduce(into: [K1: Int]()) {
+            let k1 = $1[keyPath: key1]
+            var c1 = $0[k1] ?? 0
+            c1 += 1
+            $0[k1] = c1
+        }
+    }
+}
+
+extension Collection {
+    func mapped<K1: Hashable>(by key1: KeyPath<Element, K1>, onDuplicateKey: ((K1, Element, Element, inout [K1: Element]) throws -> Void)? = nil) rethrows -> [K1: Element] {
+        try mapped(\.self, by: key1, onDuplicateKey: onDuplicateKey)
+    }
+
+    func mapped<K1: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>, onDuplicateKey: ((K1, V, V, inout [K1: V]) throws -> Void)? = nil) rethrows -> [K1: V] {
         if let onDuplicateKey {
             try reduce(into: [K1: V]()) {
                 let k1 = $1[keyPath: key1]
@@ -37,11 +56,11 @@ extension Collection {
 }
 
 extension Collection {
-    func group<K1: Hashable>(by key1: KeyPath<Element, K1>) -> [K1: [Element]] {
-        group(\.self, by: key1)
+    func grouped<K1: Hashable>(by key1: KeyPath<Element, K1>) -> [K1: [Element]] {
+        grouped(\.self, by: key1)
     }
 
-    func group<K1: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>) -> [K1: [V]] {
+    func grouped<K1: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>) -> [K1: [V]] {
         reduce(into: [K1: [V]]()) {
             let k1 = $1[keyPath: key1]
             let v = $1[keyPath: value]
@@ -51,11 +70,11 @@ extension Collection {
         }
     }
 
-    func group<K1: Hashable, K2: Hashable>(by key1: KeyPath<Element, K1>, _ key2: KeyPath<Element, K2>) -> [K1: [K2: [Element]]] {
-        group(\.self, by: key1, key2)
+    func grouped<K1: Hashable, K2: Hashable>(by key1: KeyPath<Element, K1>, _ key2: KeyPath<Element, K2>) -> [K1: [K2: [Element]]] {
+        grouped(\.self, by: key1, key2)
     }
 
-    func group<K1: Hashable, K2: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>, _ key2: KeyPath<Element, K2>) -> [K1: [K2: [V]]] {
+    func grouped<K1: Hashable, K2: Hashable, V>(_ value: KeyPath<Element, V>, by key1: KeyPath<Element, K1>, _ key2: KeyPath<Element, K2>) -> [K1: [K2: [V]]] {
         reduce(into: [K1: [K2: [V]]]()) {
             let k1 = $1[keyPath: key1]
             let k2 = $1[keyPath: key2]
@@ -99,6 +118,10 @@ extension Sequence {
         result.append(contentsOf: rhs)
         return result
     }
+
+    public static func - (lhs: Self, rhs: Self) -> [Self.Element] where Self.Element: Equatable {
+        lhs.filter { !rhs.contains($0) }
+    }
 }
 
 extension Set {
@@ -126,6 +149,27 @@ extension Set {
 extension Dictionary {
     public static func + (lhs: Self, rhs: Self) -> Self {
         lhs.merging(rhs) { $1 }
+    }
+}
+
+extension Dictionary {
+    struct KeySortComparator<KeyComparator: SortComparator<Key>>: SortComparator {
+        var comparator: KeyComparator
+        var order: SortOrder {
+            get { comparator.order }
+            set { comparator.order = newValue }
+        }
+        func compare(_ lhs: Dictionary<Key, Value>.Element, _ rhs: Dictionary<Key, Value>.Element) -> ComparisonResult {
+            comparator.compare(lhs.key, rhs.key)
+        }
+    }
+
+    public func sorted<Comparator>(usingKeys comparator: Comparator) -> [Self.Element] where Comparator : SortComparator, Self.Key == Comparator.Compared {
+        sorted(using: KeySortComparator(comparator: comparator))
+    }
+
+    public func sorted<S, Comparator>(usingKeys comparators: S) -> [Self.Element] where S : Sequence, Comparator : SortComparator, Comparator == S.Element, Self.Key == Comparator.Compared {
+        sorted(using: comparators.lazy.map(KeySortComparator.init))
     }
 }
 

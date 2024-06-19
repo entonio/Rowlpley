@@ -48,6 +48,10 @@ struct OPWeapon: ModifiableItem, Codable, Hashable {
     let hits: [OPHit]
 }
 
+extension OPWeapon {
+    static let custom = OPWeapon(id: "", icon: nil, load: 1, category: .one, defenseBonus: nil, modifications: [], level: .simple, range: .melee, handedness: .oneHanded, hits: [OPHit(type: .impact, modifier: RPGModifier(formula: nil, dice: [RPGDice(amount: 1, sides: 6)]))])
+}
+
 struct OPProtection: ModifiableItem, Codable, Hashable, WithOptionalIcon {
     let id: StringId
     let icon: String?
@@ -58,6 +62,10 @@ struct OPProtection: ModifiableItem, Codable, Hashable, WithOptionalIcon {
     let weight: OPProficiencyTag
 }
 
+extension OPProtection {
+    static let custom = OPProtection(id: "", icon: nil, load: 1, category: .one, defenseBonus: nil, modifications: [], weight: .light)
+}
+
 struct OPItem: DefenseBonus, Codable, Hashable, WithOptionalIcon {
     let id: StringId
     let icon: String?
@@ -65,6 +73,10 @@ struct OPItem: DefenseBonus, Codable, Hashable, WithOptionalIcon {
     let category: OPItemCategory
     let defenseBonus: Expression?
     let domain: OPItemDomain
+}
+
+extension OPItem {
+    static let custom = OPItem(id: "", icon: nil, load: 1, category: .one, defenseBonus: nil, domain: .documents)
 }
 
 struct OPAmmunition: LocalizedObject, Codable {
@@ -96,11 +108,10 @@ enum OPItemDomain: Codable, CaseIterable, Comparable {
 }
 
 enum OPItemCategory: Int, Codable {
-    case first = 1
-    case second
-    case third
-    case fourth
-    case fifth
+    case one = 1
+    case two
+    case three
+    case four
 }
 
 extension OPItemCategory {
@@ -108,7 +119,7 @@ extension OPItemCategory {
         if let i = Self(rawValue: number) {
             self = i
         } else {
-            throw UnexpectedValueError(number, 1...5)
+            throw UnexpectedValueError(number, 1...4)
         }
     }
 }

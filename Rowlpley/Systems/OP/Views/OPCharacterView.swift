@@ -41,13 +41,11 @@ struct OPCharacterView: View {
             }
             
             Section {
-                ForEach(character.rituals) {
-                    OPRitualView(character: character, ritual: $0)
-                }
+                OPRitualsInventory(character: $character)
             } header: {
-                HStack {
+                LRStack {
                     Text("Rituals")
-                    Spacer()
+                } and: {
                     Menu("Add Ritual ⚡", systemImage: "plus") {
                         OPRitualsMenu(character: $character)
                     }
@@ -56,13 +54,11 @@ struct OPCharacterView: View {
             }
 
             Section {
-                ForEach(character.weapons) {
-                    OPWeaponView(character: character, weapon: $0)
-                }
+                OPWeaponsInventory(character: $character)
             } header: {
-                HStack {
+                LRStack {
                     Text("Weapons")
-                    Spacer()
+                } and: {
                     Menu("Add Weapon 🔫", systemImage: "plus") {
                         OPWeaponsMenu(character: $character)
                     }
@@ -71,13 +67,11 @@ struct OPCharacterView: View {
             }
 
             Section {
-                ForEach(character.protections) {
-                    OPProtectionView(character: character, protection: $0)
-                }
+                OPProtectionsInventory(character: $character)
             } header: {
-                HStack {
+                LRStack {
                     Text("Protections")
-                    Spacer()
+                } and: {
                     Menu("Add Protection 👷", systemImage: "plus") {
                         OPProtectionsMenu(character: $character)
                     }
@@ -86,13 +80,11 @@ struct OPCharacterView: View {
             }
 
             Section {
-                ForEach(character.items) {
-                    OPItemView(character: character, item: $0)
-                }
+                OPItemsInventory(character: $character)
             } header: {
-                HStack {
+                LRStack {
                     Text("Items")
-                    Spacer()
+                } and: {
                     Menu("Add Item 👜", systemImage: "plus") {
                         OPItemsMenu(character: $character)
                     }

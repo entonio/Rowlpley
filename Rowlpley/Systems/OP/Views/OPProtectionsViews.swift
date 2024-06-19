@@ -10,6 +10,7 @@ struct OPProtectionsMenu: View {
 
     var body: some View {
         let system = character.system.op
+   
         ForEach(available.protections.sorted(using: KeyPathComparator(\.key)), id: \.key) { weight, protections in
             Section("\(Text(weight.icon)) \(Text(weight.name))") {
                 ForEach(protections) { protection in
@@ -20,6 +21,22 @@ struct OPProtectionsMenu: View {
                     }
                 }
             }
+        }
+
+        Button {
+            character.add(protection: .custom)
+        } label: {
+            MenuLabel(nil, "Custom...")
+        }
+    }
+}
+
+struct OPProtectionsInventory: View {
+    @Binding var character: OPCharacter
+
+    var body: some View {
+        ForEach(character.protections) {
+            OPProtectionView(character: character, protection: $0)
         }
     }
 }
