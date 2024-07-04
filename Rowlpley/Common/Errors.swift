@@ -32,16 +32,16 @@ struct PreconditionError: Error, CustomStringConvertible, CustomDebugStringConve
     var debugDescription: String { description }
 }
 
-struct UnexpectedValueError<T> : Error, CustomStringConvertible, CustomDebugStringConvertible {
+struct UnexpectedValueError<T: Sendable, C: Collection<T>> : Error, CustomStringConvertible, CustomDebugStringConvertible where C: Sendable {
     private let value: T
-    private let options: (any Collection<T>)?
+    private let options: C?
 
     init(_ value: T) {
         self.value = value
         self.options = nil
     }
 
-    init(_ value: T, _ options: any Collection<T>) {
+    init(_ value: T, _ options: C) {
         self.value = value
         self.options = options
     }
@@ -56,11 +56,11 @@ struct UnexpectedValueError<T> : Error, CustomStringConvertible, CustomDebugStri
     var debugDescription: String { description }
 }
 
-struct UnusableValueError: Error, CustomStringConvertible, CustomDebugStringConvertible {
-    private let value: Any
-    private let context: Any
+struct UnusableValueError<V: Sendable, C: Sendable>: Error, CustomStringConvertible, CustomDebugStringConvertible {
+    private let value: V
+    private let context: C
 
-    init(_ value: Any, for context: Any) {
+    init(_ value: V, for context: C) {
         self.value = value
         self.context = context
     }
@@ -69,18 +69,18 @@ struct UnusableValueError: Error, CustomStringConvertible, CustomDebugStringConv
     var debugDescription: String { description }
 }
 
-struct ConversionError<S, T> : Error, CustomStringConvertible, CustomDebugStringConvertible {
+struct ConversionError<S: Sendable, T: Sendable, C: Collection<T>> : Error, CustomStringConvertible, CustomDebugStringConvertible  where C: Sendable {
     private let source: S
     private let target: T.Type
-    private let options: (any Collection<T>)?
+    private let options: C?
 
-    init(_ source: S, _ target: T.Type) {
+    init(_ source: S, _ target: T.Type) where C == Array<T> {
         self.source = source
         self.target = target
         self.options = nil
     }
 
-    init(_ source: S, _ options: any Collection<T>) {
+    init(_ source: S, _ options: C) {
         self.source = source
         self.target = T.self
         self.options = options

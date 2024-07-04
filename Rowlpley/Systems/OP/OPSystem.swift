@@ -65,7 +65,7 @@ extension StringId {
     func opTrack(_ system: RPGSystemId) ->  OPTrack.Id { OPTrack.Id(id: self, system: system) }
 }
 
-extension RPGLoadables {
+extension RPGLoader {
     func loadOP(_ base: any RPGSystem) throws -> OPSystem {
         let systemId = base.id.id.content
 
@@ -264,7 +264,7 @@ extension Array<String> {
         switch to {
         case is Int.Type: map { Int($0)! as! T }
         case is Double.Type: map { Double($0)! as! T }
-        default: throw ConversionError(to, [Int.self, Double.self])
+        default: throw ConversionError(to, [Int.self, Double.self] as [Sendable.Type])
         }
     }
 }

@@ -37,12 +37,12 @@ struct OPFormulaView: View  {
     let resultStyle: any ShapeStyle
 
     init(_ expression: Any, _ result: Any, _ resultStyle: (any ShapeStyle)? = nil, _ localizations: Localizations) {
-        if let expression = expression as? Expression {
+        if let expression = expression as? Expressive.Expression {
             self.expression = expression.description(varTransform: localizations.get)
         } else {
             self.expression = expression
         }
-        if let result = result as? Expression {
+        if let result = result as? Expressive.Expression {
             self.result = result.description(varTransform: localizations.get)
         } else {
             self.result = result

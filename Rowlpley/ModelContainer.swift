@@ -18,7 +18,8 @@ protocol PreloadablePersistentModel: PersistentModel {
 }
 
 extension ModelContainer {
-    @MainActor static func rpg() -> ModelContainer {
+    @MainActor 
+    static func rpg() -> ModelContainer {
         let characterTypes = RPGSystemType.allCases.map(\.characterType)
 
         let preloadableTypes = characterTypes
@@ -58,7 +59,8 @@ extension ModelContainer {
 }
 
 extension ModelContainer {
-    @MainActor func contains<T: PersistentModel>(_ type: T.Type) throws -> Bool {
+    @MainActor 
+    func contains<T: PersistentModel>(_ type: T.Type) throws -> Bool {
         var descriptor = FetchDescriptor<T>()
         descriptor.fetchLimit = 1
         let fetch = try mainContext.fetch(descriptor)

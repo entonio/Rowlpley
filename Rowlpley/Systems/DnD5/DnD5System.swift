@@ -23,7 +23,7 @@ extension RPGSystem {
     var dnd5: DnD5System { self as! DnD5System }
 }
 
-extension RPGLoadables {
+extension RPGLoader {
     func loadDnD5(_ base: any RPGSystem) throws -> DnD5System {
         DnD5System(id: base.id, name: base.name, icon: base.icon, dynLocs: base.dynLocs)
     }

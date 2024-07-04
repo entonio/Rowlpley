@@ -96,6 +96,7 @@ struct OPWeaponView: View {
             } set: {
                 if let crit = try? OPCriticalHit($0) {
                     character.replace(weapon: weapon, by: weapon.with(
+                        icon: nil,
                         crit: crit
                     ))
                 }

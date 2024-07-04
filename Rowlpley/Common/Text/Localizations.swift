@@ -39,16 +39,21 @@ extension LocalizedEnum {
     var id: StringId { name.key.stringId() }
 }
 
-extension LocalizedEnum {
-    init(_ name: String, _ cases: (any Collection<Self>)? = nil) throws {
+extension LocalizedEnum where Self: Sendable {
+    init(_ name: String) throws {
+        try self.init(name, [])
+    }
+
+    init<C>(_ name: String, _ cases: C) throws where C: Collection<Self>, C: Sendable {
         let name = name.lowercased()
-        let result = (cases ?? Self.allCases).first {
-            // if .key becomes unavailable, use
-            // $0.name == LocalizedStringKey(stringLiteral: name)
+        let condition: (Self) -> Bool = {
+            // if .key becomes unavailable, use something
+            // like $0.name == LocalizedStringKey(stringLiteral: name)
             $0.name.key.lowercased() == name
         }
+        let result = cases.first(where: condition) ?? Self.allCases.first(where: condition)
         guard let result else {
-            if let cases {
+            if cases.hasContents {
                 throw ConversionError(name, cases)
             } else {
                 throw ConversionError(name, Self.self)

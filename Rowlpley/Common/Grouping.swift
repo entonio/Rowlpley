@@ -12,9 +12,7 @@ extension Collection {
     func counted<K1: Hashable>(by key1: KeyPath<Element, K1>) -> Dictionary<K1, Int> {
         reduce(into: Dictionary<K1, Int>()) {
             let k1 = $1[keyPath: key1]
-            var c1 = $0[k1] ?? 0
-            c1 += 1
-            $0[k1] = c1
+            $0[k1] = ($0[k1] ?? 0) + 1
         }
     }
 }
@@ -66,9 +64,7 @@ extension Sequence {
         reduce(into: [K1: [V]]()) {
             let k1 = $1[keyPath: key1]
             let v = $1[keyPath: value]
-            var c1 = $0[k1] ?? []
-            c1.append(v)
-            $0[k1] = c1
+            $0[k1] = $0[k1]?.appending(v) ?? [v]
         }
     }
 
@@ -82,9 +78,7 @@ extension Sequence {
             let k2 = $1[keyPath: key2]
             let v = $1[keyPath: value]
             var c1 = $0[k1] ?? [:]
-            var c2 = c1[k2] ?? []
-            c2.append(v)
-            c1[k2] = c2
+            c1[k2] = c1[k2]?.appending(v) ?? [v]
             $0[k1] = c1
         }
     }

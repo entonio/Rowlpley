@@ -2,19 +2,18 @@
 // Copyright © 2024 Antonio Pedro Marques. All rights reserved.
 //
         
-
 import Expressive
 
-let AGI: Expression = "AGI"
-let FOR: Expression = "FOR"
-let INT: Expression = "INT"
-let PRE: Expression = "PRE"
-let VIG: Expression = "VIG"
+let AGI: Expressive.Expression = "AGI"
+let FOR: Expressive.Expression = "FOR"
+let INT: Expressive.Expression = "INT"
+let PRE: Expressive.Expression = "PRE"
+let VIG: Expressive.Expression = "VIG"
 
-let NEX: Expression = "NEX"
+let NEX: Expressive.Expression = "NEX"
 
-let ITEMS: Expression = "ITEMS"
-let OTHER: Expression = "OTHER"
+let ITEMS: Expressive.Expression = "ITEMS"
+let OTHER: Expressive.Expression = "OTHER"
 
 struct OPNex: Codable, Hashable {
     static let allCases = (1...20).map { OPNex(level: $0) }
@@ -78,18 +77,18 @@ extension OPCharacter {
 }
 
 extension OPCharacter {
-    var defense1: Expression {
+    var defense1: Expressive.Expression {
         OPSystem.defense.replace([
             ITEMS: defenseItemsMap.keys.joined() ?? ITEMS,
             OTHER: defenseOtherMap.keys.joined() ?? OTHER,
         ])
     }
 
-    var defense2: Expression {
+    var defense2: Expressive.Expression {
         defense1.replace(defenseItemsMap + defenseOtherMap + [ITEMS: 0, OTHER: 0])
     }
 
-    var defenseValue: Expression {
+    var defenseValue: Expressive.Expression {
         defense2.solve(using: [
             AGI: attribute(.AGI)
         ])
@@ -100,10 +99,10 @@ extension OPCharacter {
             .filter { $0.defenseBonus != nil }
     }
 
-    private var defenseItemsMap: [Expression : Expression] {
+    private var defenseItemsMap: [Expressive.Expression : Expressive.Expression] {
         defenseItems.reduce(into: [:]) {
             let name = ($1 as? (any ModifiableItem))?.nameWithModifiers(system.get) ?? $1.name(system.get)
-            $0[Expression.variable(name)] = $1.defenseBonus!
+            $0[Expressive.Expression.variable(name)] = $1.defenseBonus!
         }
     }
 
@@ -112,10 +111,10 @@ extension OPCharacter {
             .filter { $0.defenseBonus != nil }
     }
 
-    private var defenseOtherMap: [Expression : Expression] {
+    private var defenseOtherMap: [Expressive.Expression : Expressive.Expression] {
         defenseOther.reduce(into: [:]) {
             let name = $1.name(system.get)
-            $0[Expression.variable(name)] = $1.defenseBonus!
+            $0[Expressive.Expression.variable(name)] = $1.defenseBonus!
         }
     }
 }

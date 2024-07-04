@@ -4,26 +4,36 @@
 
 import Foundation
 
-// This is not thread-safe. Do not rely on it for thread-safe use.
-class TypedCache {
-    private var entries: [AnyHashable: (Date, Any)] = [:]
+final class TypedCache: Sendable {
+    private let lock = NSLock()
+    nonisolated(unsafe) private var entries: [AnyHashable: (Date, Any)] = [:]
 
-    private var ttl: TimeInterval
-    
+    private let ttl: TimeInterval
+
     init(ttl: TimeInterval) {
         self.ttl = ttl
     }
 
     func put<V>(_ key: TypedMapKey<V>, _ value: V) {
+        lock.lock()
+        defer { lock.unlock() }
+        
         entries[key] = (Date.now, value)
     }
 
     func delete<V>(_ key: TypedMapKey<V>) {
+        lock.lock()
+        defer { lock.unlock() }
+        
         entries.removeValue(forKey: key)
     }
 
     func get<V>(_ key: TypedMapKey<V>) -> V? {
+        lock.lock()
+        defer { lock.unlock() }
+
         deletePastTTL()
+        
         if let v = entries[key]?.1 {
             return (v as! V)
         }
@@ -37,14 +47,6 @@ class TypedCache {
     }
 }
 
-class TypedMapKey<ValueType> : Hashable {
+struct TypedMapKey<ValueType> : Hashable, Sendable {
     let id = UUID()
-
-    static func == (lhs: TypedMapKey<ValueType>, rhs: TypedMapKey<ValueType>) -> Bool {
-        lhs.id == rhs.id
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
 }

@@ -36,6 +36,7 @@ extension Binding {
 }
 
 extension Binding where Value == String {
+    @MainActor
     static func binding<T: AnyObject>(_ object: T, array: ReferenceWritableKeyPath<T, [String]>) -> Self {
         Binding(get: {
             object[keyPath: array].joined(separator: " ")

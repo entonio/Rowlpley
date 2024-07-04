@@ -15,11 +15,11 @@ enum OPAttribute: Codable, CaseIterable {
 
 struct OPClass: LocalizedObject, Codable {
     let id: OPClass.Id
-    let hitPoints: Expression
-    let effortPoints: Expression
-    let sanity: Expression
+    let hitPoints: Expressive.Expression
+    let effortPoints: Expressive.Expression
+    let sanity: Expressive.Expression
     let baseSkillsOptions: [[OPSkill]]
-    let extraSkills: Expression
+    let extraSkills: Expressive.Expression
     let proficiencies: [OPProficiency]
     let tracks: [OPTrack]
     let powers: [OPClassPower]
@@ -34,7 +34,7 @@ struct OPClass: LocalizedObject, Codable {
 
 struct OPClassPower: DefenseBonus, Codable {
     let id: StringId
-    let defenseBonus: Expression?
+    let defenseBonus: Expressive.Expression?
     let resistances: [OPResistance]
     let statBonuses: [OPStatBonus]
     let skillBonuses: [OPSkillBonus]
@@ -77,7 +77,7 @@ struct OPTrack: LocalizedObject, Codable {
 struct OPTrackPower: LocalizedObject, Codable {
     let id: StringId
     let nex: OPNex
-    let defenseBonus: Expression?
+    let defenseBonus: Expressive.Expression?
     let resistances: [OPResistance]
     let statBonuses: [OPStatBonus]
     let skillBonuses: [OPSkillBonus]

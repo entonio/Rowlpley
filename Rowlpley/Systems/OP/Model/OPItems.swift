@@ -7,7 +7,7 @@ import SwiftUI
 import CopyWithChanges
 
 protocol DefenseBonus: LocalizedObject {
-    var defenseBonus: Expression? { get }
+    var defenseBonus: Expressive.Expression? { get }
 }
 
 protocol Equipable: DefenseBonus, WithOptionalIcon {
@@ -42,7 +42,7 @@ struct OPWeapon: ModifiableItem, Codable, Hashable {
     let icon: String?
     let load: Int
     let category: OPItemCategory
-    let defenseBonus: Expression?
+    let defenseBonus: Expressive.Expression?
     let modifications: [Modification]
     let level: OPProficiencyTag
     let range: OPProficiencyTag
@@ -60,7 +60,7 @@ struct OPProtection: ModifiableItem, Codable, Hashable, WithOptionalIcon {
     let icon: String?
     let load: Int
     let category: OPItemCategory
-    let defenseBonus: Expression?
+    let defenseBonus: Expressive.Expression?
     let modifications: [Modification]
     let weight: OPProficiencyTag
 }
@@ -74,7 +74,7 @@ struct OPItem: Equipable, Codable, Hashable {
     let icon: String?
     let load: Int
     let category: OPItemCategory
-    let defenseBonus: Expression?
+    let defenseBonus: Expressive.Expression?
     let domain: OPItemDomain
 }
 

@@ -20,7 +20,7 @@ struct RowlpleyApp: App {
     }
 }
 
-let executionContext = TypedMap(ttl: 30)
+let executionContext = TypedCache(ttl: 30)
 
 extension TypedMapKey where ValueType == String {
     static let table = TypedMapKey()

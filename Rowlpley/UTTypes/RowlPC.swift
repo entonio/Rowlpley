@@ -15,8 +15,8 @@ struct RowlPC {
 }
 
 extension RowlPC: FileDocument {
-    static var readableContentTypes: [UTType] = [.rowlpc]
-    static var writableContentTypes: [UTType] = [.rowlpc]
+    static let readableContentTypes: [UTType] = [.rowlpc]
+    static let writableContentTypes: [UTType] = [.rowlpc]
 
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents else {

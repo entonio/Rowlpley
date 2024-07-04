@@ -18,22 +18,22 @@ class StorableImage: Codable {
         }
         self.key = UUID()
         self.data = data
-        Self.cache.setObject(uiImage, forKey: key.ns)
+        Self.cache.do { $0.setObject(uiImage, forKey: key.ns) }
     }
 }
 
 extension StorableImage {
-    private static let cache = NSCache<NSUUID, UIImage>()
+    private static let cache = Locked(NSCache<NSUUID, UIImage>())
 
     var uiImage: UIImage {
-        if let uiImage = Self.cache.object(forKey: key.ns) {
+        if let uiImage = Self.cache.do({ $0.object(forKey: key.ns) }) {
             return uiImage
         }
         guard let uiImage = UIImage(data: data) else {
             assertionFailure("Cannot convert data to UIImage, but could do it on init")
             return UIImage()
         }
-        Self.cache.setObject(uiImage, forKey: key.ns)
+        Self.cache.do { $0.setObject(uiImage, forKey: key.ns) }
         return uiImage
     }
 }

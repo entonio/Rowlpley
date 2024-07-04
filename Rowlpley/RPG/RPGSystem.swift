@@ -23,9 +23,9 @@ struct RPGSystemId: StringIdProvider {
     let id: StringId
     var get: RPGSystem { Self.byId(self) }
 
-    static func byId(_ id: Self) -> RPGSystem { map[id]! }
-    static var map: [Self: RPGSystem] = [:]
-    static var systems: [RPGSystem] { map.values.map { $0 } }
+    static func byId(_ id: Self) -> RPGSystem { map.do { $0[id]! } }
+    static let map = Locked([Self: RPGSystem]())
+    static var systems: [RPGSystem] { map.do { $0.values.map { $0 } } }
 
     static let empty = Self(id: .empty)
 }
@@ -84,10 +84,10 @@ extension RPGBonus {
 }
 
 struct RPGModifier: Codable, Hashable {
-    let formula: Expression?
+    let formula: Expressive.Expression?
     let dice: [RPGDice]?
 
-    init(formula: Expression?, dice: [RPGDice]?) {
+    init(formula: Expressive.Expression?, dice: [RPGDice]?) {
         self.formula = formula
         self.dice = Dictionary(grouping: dice ?? []) {
             $0.sides
@@ -109,13 +109,13 @@ enum DescriptionStyle {
 }
 
 extension CustomStringConvertible {
-    var expression: Expression {
+    var expression: Expressive.Expression {
         .variable(description)
     }
 }
 
 extension RPGModifier {
-    var expression: Expression {
+    var expression: Expressive.Expression {
         if let dice, dice.hasContents {
             let dice = dice.map(\.expression).joined(.plus)!
             if let formula {
@@ -143,11 +143,11 @@ extension RPGModifier {
             if match.4.isEmpty {
                 self.formula = nil
             } else {
-                self.formula = try Expression(stringExpression: String(match.4))
+                self.formula = try Expressive.Expression(stringExpression: String(match.4))
             }
         } else {
             self.dice = nil
-            self.formula = try Expression(stringExpression: string)
+            self.formula = try Expressive.Expression(stringExpression: string)
         }
     }
 }
@@ -177,7 +177,7 @@ extension RPGModifier {
     static let zero = Self(formula: nil, dice: nil)
 }
 
-extension Expression {
+extension Expressive.Expression {
     public static func adding(lhs: Self?, rhs: Self?) -> Self? {
         if let lhs {
             if let rhs {

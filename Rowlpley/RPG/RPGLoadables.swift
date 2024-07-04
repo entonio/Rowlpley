@@ -4,6 +4,7 @@
 
 import OSLog
 
+@MainActor
 class RPGLoadables: ObservableObject {
     enum Status: Equatable {
         case idle
@@ -15,10 +16,8 @@ class RPGLoadables: ObservableObject {
 
     @Published private(set) var status: Status = .idle
 
-    func dispatchStatus(_ status: Status) {
-        DispatchQueue.main.async {
-            self.status = status
-        }
+    fileprivate func setStatus(_ status: Status) {
+        self.status = status
     }
 
     init() {
@@ -27,31 +26,39 @@ class RPGLoadables: ObservableObject {
 
     func reset() {
         Task {
-            do {
-                dispatchStatus(.updating)
-                try await update()
-            } catch {
-                Logger().warning("Could not update: [\(error)]")
-            }
-
-            do {
-                dispatchStatus(.loading)
-                try load()
-            } catch {
-                let table = executionContext.get(.table)?.lastPathComponent
-                let row = executionContext.get(.row)
-                var context = (error as CustomStringConvertible).description
-                if let table, let row {
-                    context = "\(table):\(row + 1): \(context)"
-                } else if let table {
-                    context = "\(table): \(context)"
-                }
-                Logger().warning("Could not load system: [\(context)]")
-                return dispatchStatus(.cancelled(context))
-            }
-
-            dispatchStatus(.ready)
+            await RPGLoader().run(for: self)
         }
+    }
+}
+
+struct RPGLoader {
+    func run(for loadables: RPGLoadables) async {
+        do {
+            await loadables.setStatus(.updating)
+            try await update()
+        } catch {
+            Logger().warning("Could not update: [\(error)]")
+        }
+
+        do {
+            await loadables.setStatus(.loading)
+            try load()
+        } catch {
+            let table = executionContext.get(.table)?.lastPathComponent
+            let row = executionContext.get(.row)
+            var context = (error as CustomStringConvertible).description
+            if let table, let row {
+                context = "\(table):\(row + 1): \(context)"
+            } else if let table {
+                context = "\(table): \(context)"
+            }
+            Logger().warning("Could not load system: [\(context)]")
+            await loadables.setStatus(.cancelled(context))
+            return
+        }
+
+        await loadables.setStatus(.ready)
+        return
     }
 }
 

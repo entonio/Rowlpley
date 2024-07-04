@@ -118,6 +118,12 @@ extension Array {
 }
 
 extension Array {
+    func appending(_ newElement: Element) -> Self {
+        var copy = self
+        copy.append(newElement)
+        return copy
+    }
+
     func every(_ position: Int, of modulo: Int) -> Self {
         enumerated()
             .lazy
