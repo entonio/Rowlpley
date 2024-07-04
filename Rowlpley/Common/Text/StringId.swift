@@ -20,6 +20,12 @@ struct StringId: ExpressibleByStringLiteral, StringIdProvider {
 
 extension String {
     func stringId() -> StringId {
-        StringId(stringLiteral: self)
+        return StringId(stringLiteral: self)
+    }
+}
+
+extension String {
+    var text: String? {
+        trimmingCharacters(in: .whitespacesAndNewlines).nilIfEmpty
     }
 }

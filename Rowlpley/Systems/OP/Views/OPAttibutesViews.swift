@@ -57,7 +57,7 @@ struct OPAttributeView: View {
 
 struct OPAttributesTotalView: View {
     @Binding var character: OPCharacter
-    @State var warningDisplayedAtLeastOnce = false
+    @State private var warningDisplayedAtLeastOnce = false
 
     var body: some View {
         LRStack {

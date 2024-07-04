@@ -12,11 +12,15 @@ extension View {
 }
 
 extension View {
-    func rowButton<Style: ShapeStyle>(_ style: Style) -> some View {
+    func rowButton() -> some View {
         self.buttonStyle(.borderless)
             .padding(0)
             .padding(.horizontal, 5)
             .font(.body.bold())
+    }
+
+    func rowButton<Style: ShapeStyle>(_ style: Style) -> some View {
+        self.rowButton()
             .foregroundStyle(style)
     }
 }
@@ -104,7 +108,6 @@ extension View {
 }
 
 enum StorableColorScheme: Int, Hashable, CaseIterable {
-
     case system
     case light
     case dark

@@ -35,17 +35,23 @@ struct OPItemsInventory: View {
     @Binding var character: OPCharacter
 
     var body: some View {
-        ForEach(character.items) {
-            OPItemView(character: character, item: $0)
+        ForEach(character.items.counted().sorted(usingKeys: [
+            KeyPathComparator(\.domain)
+        ]), id: \.key) {
+            OPItemView(character: character, item: $0, count: $1)
         }
     }
 }
 
 struct OPItemView: View {
-    var character: OPCharacter
-    var item: OPItem
+    let character: OPCharacter
+    let item: OPItem
+    let count: Int
 
     var body: some View {
-        Text(item.name(character.system.op))
+        HStack {
+            Text("\(count)")
+            Text(item.name(character.system.op))
+        }
     }
 }

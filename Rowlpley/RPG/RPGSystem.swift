@@ -103,6 +103,32 @@ struct RPGModifier: Codable, Hashable {
     }
 }
 
+enum DescriptionStyle {
+    case simple
+    case full
+}
+
+extension CustomStringConvertible {
+    var expression: Expression {
+        .variable(description)
+    }
+}
+
+extension RPGModifier {
+    var expression: Expression {
+        if let dice, dice.hasContents {
+            let dice = dice.map(\.expression).joined(.plus)!
+            if let formula {
+                return dice + formula
+            } else {
+                return dice
+            }
+        } else {
+            return formula!
+        }
+    }
+}
+
 extension RPGModifier {
     init?(_ string: String) throws {
         let string = string.trimmingCharacters(in: .whitespacesAndNewlines)

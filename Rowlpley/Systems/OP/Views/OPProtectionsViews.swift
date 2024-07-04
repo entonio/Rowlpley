@@ -35,17 +35,24 @@ struct OPProtectionsInventory: View {
     @Binding var character: OPCharacter
 
     var body: some View {
-        ForEach(character.protections) {
-            OPProtectionView(character: character, protection: $0)
+        ForEach(character.protections.counted().sorted(usingKeys: [
+            KeyPathComparator(\.weight, order: .reverse),
+            KeyPathComparator(\.modifications.count, order: .reverse)
+        ]) , id: \.key) {
+            OPProtectionView(character: character, protection: $0, count: $1)
         }
     }
 }
 
 struct OPProtectionView: View {
-    var character: OPCharacter
-    var protection: OPProtection
+    let character: OPCharacter
+    let protection: OPProtection
+    let count: Int
 
     var body: some View {
-        Text(protection.name(character.system.op))
+        HStack {
+            Text("\(count)")
+            Text(protection.name(character.system.op))
+        }
     }
 }

@@ -35,7 +35,7 @@ extension OPProficiencyTag: WithIcon {
         case .tactical:    "🤔"
         case .heavy:       "🏋️"
         case .melee:       "🤼"
-        case .shooting:    "🏹"
+        case .shooting:    "🎯"
         case .fire:        "🔫"
         case .oneHanded:   "🍺"
         case .twoHanded:   "🍻"
@@ -46,9 +46,34 @@ extension OPProficiencyTag: WithIcon {
 extension OPItemDomain: WithIcon {
     var icon: String {
         switch self {
-        case .medicine:   "🧑‍⚕️"
+        case .medicine:   "⚕️"
         case .profession: "🧰"
         case .documents:  "📝"
+        }
+    }
+}
+
+extension OPItemCategory: WithIcon {
+    var icon: String {
+        switch self {
+        case .one:   "Ⅰ"
+        case .two:   "Ⅱ"
+        case .three: "Ⅲ"
+        case .four:  "Ⅳ"
+        }
+    }
+}
+
+extension OPRitualCircle: WithIcon {
+    var icon: String {
+        switch self {
+        case .first:   "Ⅰ"
+        case .second:  "Ⅱ"
+        case .third:   "Ⅲ"
+        case .fourth:  "Ⅳ"
+        case .fifth:   "Ⅴ"
+        case .sixth:   "Ⅵ"
+        case .seventh: "Ⅶ"
         }
     }
 }

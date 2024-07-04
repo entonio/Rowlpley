@@ -13,14 +13,6 @@ extension CGFloat {
     static let characterIconSize: Self = 34
 }
 
-extension Color {
-    static let numberColors = {
-        (Array(0...9) + [0]).map {
-            Color("numberColor\($0)")
-        }
-    }()
-}
-
 extension View {
     func sectionMenu() -> some View {
         self.textCase(nil)

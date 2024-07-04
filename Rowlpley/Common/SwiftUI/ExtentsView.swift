@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct ExtentsViewExtent<Extent, Style>: Identifiable where Extent: Numeric, Style: ShapeStyle {
+struct ExtentsViewExtent<Extent, Style> : Identifiable where Extent: Numeric, Style: ShapeStyle {
     let id = UUID()
     let extent: Extent
     let style: Style

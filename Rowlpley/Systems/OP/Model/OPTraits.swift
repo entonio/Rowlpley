@@ -175,6 +175,10 @@ enum OPProficiencyTag: Codable, CaseIterable, Comparable {
 }
 
 extension Set<OPProficiencyTag> {
+    static let basics:         Self = [.light, .simple, .oneHanded]
+}
+
+extension Set<OPProficiencyTag> {
     static let weights:        Self = [.light, .heavy]
 }
 
@@ -262,5 +266,44 @@ extension RPGHit {
             type: try OPEffect(type),
             modifier: modifier
         )
+    }
+}
+
+struct OPCriticalHit: Codable, Hashable {
+    let difficulty: Int
+    let multiplier: Int
+}
+
+extension OPCriticalHit {
+    static let `default` = Self(difficulty: 20, multiplier: 2)
+}
+
+extension OPCriticalHit {
+    init?(_ string: String) throws {
+        let string = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        if string.isEmpty {
+            return nil
+        }
+        guard let match = string.wholeMatch(of: /.*?(\d\d+)?[\/,\.\s-]*(?:[xX]\s*(\d+))?/)?.output else {
+            throw UnusableValueError(string, for: Self.self)
+        }
+        if let d = match.1, let d = Int(d) {
+            if d =~ 1...20 {
+                self.difficulty = d
+            } else {
+                throw UnusableValueError(d, for: "difficulty: 1...20")
+            }
+        } else {
+            self.difficulty = Self.default.difficulty
+        }
+        if let m = match.2, let m = Int(m) {
+            if m > 1 {
+                self.multiplier = m
+            } else {
+                throw UnusableValueError(m, for: "multiplier: > 1")
+            }
+        } else {
+            self.multiplier = Self.default.multiplier
+        }
     }
 }

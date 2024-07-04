@@ -6,7 +6,7 @@ import Foundation
 import Tabular
 import Expressive
 
-extension RPGLoadables {
+extension RPGLoader {
     func load() throws {
         try load(systemId: "DnD5")
         try load(systemId: "OP")
@@ -14,10 +14,10 @@ extension RPGLoadables {
 
     private func load(systemId: String) throws {
         let basics = try loadSystemBasics(systemId)
-        RPGSystemId.map[basics.id] = switch basics.type {
+        try RPGSystemId.map.do { $0[basics.id] = switch basics.type {
         case .DnD5: try loadDnD5(basics)
         case .OP: try loadOP(basics)
-        }
+        }}
     }
 
     private func loadSystemBasics(_ systemId: String) throws -> any RPGSystem {
@@ -93,8 +93,8 @@ extension Slot {
 }
 
 extension Slot {
-    func expression() throws -> Expression {
-        try Expression(stringExpression: string)
+    func expression() throws -> Expressive.Expression {
+        try Expressive.Expression(stringExpression: string)
     }
 
     func stringId() throws -> StringId {

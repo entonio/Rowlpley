@@ -16,6 +16,10 @@ extension Slot {
     func opProficiencyTag(_ options: Set<OPProficiencyTag>) throws -> OPProficiencyTag {
         try OPProficiencyTag(text(), options)
     }
+
+    func opCrit() throws -> OPCriticalHit {
+        try OPCriticalHit(trimmed) ?? .default
+    }
 }
 
 extension Slot {

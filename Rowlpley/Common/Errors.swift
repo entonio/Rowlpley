@@ -32,7 +32,7 @@ struct PreconditionError: Error, CustomStringConvertible, CustomDebugStringConve
     var debugDescription: String { description }
 }
 
-struct UnexpectedValueError<T>: Error, CustomStringConvertible, CustomDebugStringConvertible {
+struct UnexpectedValueError<T> : Error, CustomStringConvertible, CustomDebugStringConvertible {
     private let value: T
     private let options: (any Collection<T>)?
 
@@ -69,7 +69,7 @@ struct UnusableValueError: Error, CustomStringConvertible, CustomDebugStringConv
     var debugDescription: String { description }
 }
 
-struct ConversionError<S, T>: Error, CustomStringConvertible, CustomDebugStringConvertible {
+struct ConversionError<S, T> : Error, CustomStringConvertible, CustomDebugStringConvertible {
     private let source: S
     private let target: T.Type
     private let options: (any Collection<T>)?

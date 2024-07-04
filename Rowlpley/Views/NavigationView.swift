@@ -17,7 +17,7 @@ struct NavigationView: View {
     @Query private var dnd5Characters: [DnD5Character]
     @Query private var opCharacters: [OPCharacter]
 
-    @State var modelVersion = 1
+    @State private var modelVersion = 1
     var modelDidChange = NotificationCenter.default.publisher(for: .NSPersistentStoreRemoteChange).receive(on: RunLoop.main)
 
     var opAvailableAddons = OPAvailableAddons()

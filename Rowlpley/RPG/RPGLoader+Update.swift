@@ -5,7 +5,7 @@
 import SwiftUI
 import OSLog
 
-extension RPGLoadables {
+extension RPGLoader {
     func update() async throws {
         try await update(systemId: "OP")
     }

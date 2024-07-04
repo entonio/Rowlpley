@@ -4,12 +4,13 @@
 
 import Expressive
 import SwiftUI
+import CopyWithChanges
 
 protocol DefenseBonus: LocalizedObject {
     var defenseBonus: Expression? { get }
 }
 
-protocol Equipable: DefenseBonus {
+protocol Equipable: DefenseBonus, WithOptionalIcon {
     var load: Int { get }
     var category: OPItemCategory { get }
 }
@@ -35,8 +36,9 @@ extension ModifiableItem {
     }
 }
 
+@CopyWithChanges
 struct OPWeapon: ModifiableItem, Codable, Hashable {
-    let id: StringId
+    var id: StringId
     let icon: String?
     let load: Int
     let category: OPItemCategory
@@ -46,10 +48,11 @@ struct OPWeapon: ModifiableItem, Codable, Hashable {
     let range: OPProficiencyTag
     let handedness: OPProficiencyTag
     let hits: [OPHit]
+    var crit: OPCriticalHit
 }
 
 extension OPWeapon {
-    static let custom = OPWeapon(id: "", icon: nil, load: 1, category: .one, defenseBonus: nil, modifications: [], level: .simple, range: .melee, handedness: .oneHanded, hits: [OPHit(type: .impact, modifier: RPGModifier(formula: nil, dice: [RPGDice(amount: 1, sides: 6)]))])
+    static let custom = OPWeapon(id: "", icon: nil, load: 1, category: .one, defenseBonus: nil, modifications: [], level: .simple, range: .melee, handedness: .oneHanded, hits: [OPHit(type: .impact, modifier: RPGModifier(formula: nil, dice: [RPGDice(amount: 1, sides: 6)]))], crit: .default)
 }
 
 struct OPProtection: ModifiableItem, Codable, Hashable, WithOptionalIcon {
@@ -66,7 +69,7 @@ extension OPProtection {
     static let custom = OPProtection(id: "", icon: nil, load: 1, category: .one, defenseBonus: nil, modifications: [], weight: .light)
 }
 
-struct OPItem: DefenseBonus, Codable, Hashable, WithOptionalIcon {
+struct OPItem: Equipable, Codable, Hashable {
     let id: StringId
     let icon: String?
     let load: Int
@@ -87,17 +90,33 @@ extension OPCharacter {
     func add(weapon: OPWeapon) {
         weapons.append(weapon)
     }
+
+    func replace(weapon: OPWeapon, by another: OPWeapon) {
+        weapons.replace(1, weapon, by: another)
+    }
+
+    func drop(weapon: OPWeapon) {
+        weapons.remove(1, weapon)
+    }
 }
 
 extension OPCharacter {
     func add(protection: OPProtection) {
         protections.append(protection)
     }
+
+    func drop(protection: OPProtection) {
+        protections.remove(1, protection)
+    }
 }
 
 extension OPCharacter {
     func add(item: OPItem) {
         items.append(item)
+    }
+
+    func drop(item: OPItem) {
+        items.remove(1, item)
     }
 }
 

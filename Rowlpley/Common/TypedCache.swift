@@ -5,7 +5,7 @@
 import Foundation
 
 // This is not thread-safe. Do not rely on it for thread-safe use.
-class TypedMap {
+class TypedCache {
     private var entries: [AnyHashable: (Date, Any)] = [:]
 
     private var ttl: TimeInterval
@@ -37,7 +37,7 @@ class TypedMap {
     }
 }
 
-class TypedMapKey<ValueType>: Hashable {
+class TypedMapKey<ValueType> : Hashable {
     let id = UUID()
 
     static func == (lhs: TypedMapKey<ValueType>, rhs: TypedMapKey<ValueType>) -> Bool {

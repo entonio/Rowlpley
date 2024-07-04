@@ -207,7 +207,8 @@ extension RPGLoadables {
                     handedness: table.at(col:"HANDEDNESS", row).opProficiencyTag(.handednesses),
                     hits: table.at(col:"HITS", row).csv().compactMap {
                         try RPGHit($0)?.opHit()
-                    }
+                    },
+                    crit: table.at(col:"CRIT", row).opCrit()
                 )
             }
         }()

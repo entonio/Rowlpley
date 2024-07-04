@@ -54,6 +54,9 @@
     "↔️" : {
 
     },
+    "↔ %@" : {
+
+    },
     "+" : {
 
     },
@@ -82,6 +85,19 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "⬅︎ Seleccione uma personagem"
+          }
+        }
+      }
+    },
+    "🎒 %lld" : {
+
+    },
+    "🎖️ %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "🎖️ %1$@ %2$@"
           }
         }
       }
@@ -437,6 +453,9 @@
         }
       }
     },
+    "Delete weapon?" : {
+
+    },
     "Diplomacy" : {
       "localizations" : {
         "pt-PT" : {
@@ -749,6 +768,9 @@
       }
     },
     "NEX" : {
+
+    },
+    "No" : {
 
     },
     "Occultism" : {
@@ -1115,6 +1137,9 @@
           }
         }
       }
+    },
+    "Yes" : {
+
     }
   },
   "version" : "1.0"

@@ -9,7 +9,7 @@ struct OPPictureView: View {
     @Binding var character: OPCharacter
     var pictureOpacity: Double
 
-    @State var selection: PhotosPickerItem? = nil
+    @State private var selection: PhotosPickerItem? = nil
 
     var body: some View {
         ZStack(alignment: character.graphicalOrientation.pictureAlignment) {

@@ -61,12 +61,15 @@ extension Color {
 
 extension UIColor {
     func mixing(_ percent: CGFloat, of second: UIColor) -> UIColor? {
-        if percent <= 0 { return self }
-        if percent >= 1 { return second }
+        if percent < 0 { return self }
+        if percent > 1 { return second }
         
+        let first = self.resolvedColor(with: .current)
+        let second = second.resolvedColor(with: .current)
+
         var (r1, g1, b1, a1): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
         var (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-        guard self.getRed(&r1, green: &g1, blue: &b1, alpha: &a1) else {
+        guard first.getRed(&r1, green: &g1, blue: &b1, alpha: &a1) else {
             return nil
         }
         guard second.getRed(&r2, green: &g2, blue: &b2, alpha: &a2) else {

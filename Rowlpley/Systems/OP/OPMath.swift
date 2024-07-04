@@ -80,8 +80,8 @@ extension OPCharacter {
 extension OPCharacter {
     var defense1: Expression {
         OPSystem.defense.replace([
-            ITEMS: .joining(.plus, Array(defenseItemsMap.keys)) ?? ITEMS,
-            OTHER: .joining(.plus, Array(defenseOtherMap.keys)) ?? OTHER,
+            ITEMS: defenseItemsMap.keys.joined() ?? ITEMS,
+            OTHER: defenseOtherMap.keys.joined() ?? OTHER,
         ])
     }
 

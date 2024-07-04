@@ -66,3 +66,25 @@ extension LocalizedStringKey {
             .value as! String
     }
 }
+
+extension LocalizedStringKey {
+    func localized(tableName: String? = nil, bundle: Bundle = Bundle.main, value: String = "", comment: String = "") -> String {
+        self.key.localized(tableName: tableName, bundle: bundle, value: value, comment: comment)
+    }
+}
+
+extension String {
+    var initial: Character {
+        first!
+    }
+
+    var capital: String {
+        initial.uppercased()
+    }
+}
+
+extension String {
+    func localized(tableName: String? = nil, bundle: Bundle = Bundle.main, value: String = "", comment: String = "") -> String {
+        NSLocalizedString(self, tableName: tableName, bundle: bundle, value: value, comment: comment)
+    }
+}

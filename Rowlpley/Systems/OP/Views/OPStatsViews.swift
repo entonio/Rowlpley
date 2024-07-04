@@ -38,7 +38,7 @@ struct OPNexView: View {
 }
 
 struct OPHitPointsView: View {
-    @State var showEditor = false
+    @State private var showEditor = false
     @Binding var character: OPCharacter
 
     var body: some View {
@@ -58,7 +58,7 @@ struct OPHitPointsView: View {
                 Text("\(character.hitPoints)")
                     .foregroundStyle(.opHitPoints)
                     .opNumber()
-                    .toggleConditionalView($showEditor)
+                    .toggleWithAnimation($showEditor)
                 OPNumberInput(value: $character.temporaryHitPoints)
                     .foregroundStyle(character.temporaryHitPoints > 0 ? .opTemporaryHitPoints : .opZero)
             }
@@ -88,7 +88,7 @@ struct OPHitPointsView: View {
 }
 
 struct OPEffortPointsView: View {
-    @State var showEditor = false
+    @State private var showEditor = false
     @Binding var character: OPCharacter
 
     var body: some View {
@@ -106,7 +106,7 @@ struct OPEffortPointsView: View {
                 Text("\(character.effortPoints)")
                     .foregroundStyle(.opEffortPoints)
                     .opNumber()
-                    .toggleConditionalView($showEditor)
+                    .toggleWithAnimation($showEditor)
             }
         }
         .listRowSeparator(.hidden, edges: .bottom)
@@ -134,7 +134,7 @@ struct OPEffortPointsView: View {
 }
 
 struct OPSanityView: View {
-    @State var showEditor = false
+    @State private var showEditor = false
     @Binding var character: OPCharacter
 
     var body: some View {
@@ -152,7 +152,7 @@ struct OPSanityView: View {
                 Text("\(character.sanity)")
                     .foregroundStyle(.opSanity)
                     .opNumber()
-                    .toggleConditionalView($showEditor)
+                    .toggleWithAnimation($showEditor)
             }
         }
         .listRowSeparator(.hidden, edges: .bottom)

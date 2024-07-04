@@ -8,8 +8,8 @@ struct LoadingView: View {
 
     @EnvironmentObject var loadables: RPGLoadables
 
-    @State var retrying = false
-    @State var showStatusContext = false
+    @State private var retrying = false
+    @State private var showStatusContext = false
 
     var body: some View {
         GeometryReader { g in

@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct SelectView<Label, SelectionValue, Data, Name, ID>: View where Label: View, SelectionValue: Hashable, Data: RandomAccessCollection, Name: Any, ID : Hashable {
+struct SelectView<Label, SelectionValue, Data, Name, ID> : View where Label: View, SelectionValue: Hashable, Data: RandomAccessCollection, Name: Any, ID : Hashable {
 
     let selection: Binding<SelectionValue>
     let options: Data

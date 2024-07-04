@@ -26,7 +26,12 @@ extension UIColor {
 
 extension Color {
     func resolvedColor(with colorScheme: ColorScheme) -> Color {
-        uiColor.resolvedColor(with: .init(userInterfaceStyle: colorScheme.userInterfaceStyle)).color
+        uiColor.resolvedColor(with: colorScheme).color
+    }
+}
+extension UIColor {
+    func resolvedColor(with colorScheme: ColorScheme) -> UIColor {
+        resolvedColor(with: .init(userInterfaceStyle: colorScheme.userInterfaceStyle))
     }
 }
 
